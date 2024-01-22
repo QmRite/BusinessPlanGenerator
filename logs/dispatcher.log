@@ -1,0 +1,82 @@
+2024-01-09 17:16:00 DEBUG TelegramBot:31 - asfsasa
+2024-01-09 17:17:31 DEBUG TelegramBot:31 - ыыыы
+2024-01-09 17:20:29 DEBUG TelegramBot:34 - s
+2024-01-09 17:20:29 ERROR TelegramBot:47 - org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException: Unable to deserialize response
+2024-01-10 14:08:59 DEBUG UpdateProducerImpl:13 - sasasag
+2024-01-10 14:09:14 DEBUG UpdateProducerImpl:13 - xv
+2024-01-10 14:09:34 DEBUG UpdateProducerImpl:13 - sasag
+2024-01-10 14:09:46 DEBUG UpdateProducerImpl:13 - asgasd
+2024-01-10 14:09:55 DEBUG UpdateProducerImpl:13 - asag
+2024-01-10 14:10:09 DEBUG UpdateProducerImpl:13 - ssss
+2024-01-10 14:13:48 DEBUG UpdateProducerImpl:13 - 3632
+2024-01-10 18:00:45 DEBUG UpdateProducerImpl:13 - gecnj
+2024-01-10 18:19:20 DEBUG UpdateProducerImpl:20 - ру
+2024-01-10 18:21:26 DEBUG UpdateProducerImpl:20 - АААААААА
+2024-01-10 19:04:04 DEBUG UpdateProducerImpl:20 - Hello from чат
+2024-01-15 15:36:10 DEBUG UpdateProducerImpl:20 - Hello from чат
+2024-01-15 16:01:53 DEBUG UpdateProducerImpl:20 - ыыыы
+2024-01-15 16:24:34 DEBUG UpdateProducerImpl:20 - пвы
+2024-01-15 16:24:56 ERROR UpdateController:37 - Unsupported message type is received Update(updateId=223453900, message=null, inlineQuery=null, chosenInlineQuery=null, callbackQuery=null, editedMessage=null, channelPost=null, editedChannelPost=null, shippingQuery=null, preCheckoutQuery=null, poll=null, pollAnswer=null, myChatMember=ChatMemberUpdated(chat=Chat(id=415492714, type=private, title=null, firstName=Miguel, lastName=null, userName=QmRite, photo=null, description=null, inviteLink=null, pinnedMessage=null, stickerSetName=null, canSetStickerSet=null, permissions=null, slowModeDelay=null, bio=null, linkedChatId=null, location=null, messageAutoDeleteTime=null, hasPrivateForwards=null, HasProtectedContent=null, joinToSendMessages=null, joinByRequest=null), from=User(id=415492714, firstName=Miguel, isBot=false, lastName=null, userName=QmRite, languageCode=en, canJoinGroups=null, canReadAllGroupMessages=null, supportInlineQueries=null, isPremium=null, addedToAttachmentMenu=null), date=1705317896, oldChatMember=ChatMemberMember(status=member, user=User(id=6817834650, firstName=Business plan generator test, isBot=true, lastName=null, userName=Business_plan_generator_test_bot, languageCode=null, canJoinGroups=null, canReadAllGroupMessages=null, supportInlineQueries=null, isPremium=null, addedToAttachmentMenu=null)), newChatMember=ChatMemberBanned(status=kicked, user=User(id=6817834650, firstName=Business plan generator test, isBot=true, lastName=null, userName=Business_plan_generator_test_bot, languageCode=null, canJoinGroups=null, canReadAllGroupMessages=null, supportInlineQueries=null, isPremium=null, addedToAttachmentMenu=null), untilDate=0), inviteLink=null), chatMember=null, chatJoinRequest=null)
+2024-01-15 16:24:56 ERROR UpdateController:37 - Unsupported message type is received Update(updateId=223453901, message=null, inlineQuery=null, chosenInlineQuery=null, callbackQuery=null, editedMessage=null, channelPost=null, editedChannelPost=null, shippingQuery=null, preCheckoutQuery=null, poll=null, pollAnswer=null, myChatMember=ChatMemberUpdated(chat=Chat(id=415492714, type=private, title=null, firstName=Miguel, lastName=null, userName=QmRite, photo=null, description=null, inviteLink=null, pinnedMessage=null, stickerSetName=null, canSetStickerSet=null, permissions=null, slowModeDelay=null, bio=null, linkedChatId=null, location=null, messageAutoDeleteTime=null, hasPrivateForwards=null, HasProtectedContent=null, joinToSendMessages=null, joinByRequest=null), from=User(id=415492714, firstName=Miguel, isBot=false, lastName=null, userName=QmRite, languageCode=en, canJoinGroups=null, canReadAllGroupMessages=null, supportInlineQueries=null, isPremium=null, addedToAttachmentMenu=null), date=1705317896, oldChatMember=ChatMemberBanned(status=kicked, user=User(id=6817834650, firstName=Business plan generator test, isBot=true, lastName=null, userName=Business_plan_generator_test_bot, languageCode=null, canJoinGroups=null, canReadAllGroupMessages=null, supportInlineQueries=null, isPremium=null, addedToAttachmentMenu=null), untilDate=0), newChatMember=ChatMemberMember(status=member, user=User(id=6817834650, firstName=Business plan generator test, isBot=true, lastName=null, userName=Business_plan_generator_test_bot, languageCode=null, canJoinGroups=null, canReadAllGroupMessages=null, supportInlineQueries=null, isPremium=null, addedToAttachmentMenu=null)), inviteLink=null), chatMember=null, chatJoinRequest=null)
+2024-01-15 16:25:05 DEBUG UpdateProducerImpl:20 - /start
+2024-01-15 16:25:28 DEBUG UpdateProducerImpl:20 - /help
+2024-01-15 16:28:45 DEBUG UpdateProducerImpl:20 - /help
+2024-01-15 16:29:08 DEBUG UpdateProducerImpl:20 - /help
+2024-01-15 16:30:52 DEBUG UpdateProducerImpl:20 - /help
+2024-01-15 16:31:38 DEBUG UpdateProducerImpl:20 - /cancel
+2024-01-15 16:32:08 DEBUG UpdateProducerImpl:20 - /registration
+2024-01-18 16:43:06 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 16:45:09 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 21:20:49 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 21:21:03 ERROR TelegramBot:65 - Error executing org.telegram.telegrambots.meta.api.methods.send.SendDocument query: [400] Bad Request: there is no document in the request
+2024-01-18 21:23:11 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 21:25:13 ERROR TelegramBot:65 - Error executing org.telegram.telegrambots.meta.api.methods.send.SendDocument query: [400] Bad Request: there is no document in the request
+2024-01-18 21:25:22 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 21:26:28 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 21:26:42 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 21:27:06 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 21:41:25 ERROR TelegramBot:65 - Error executing org.telegram.telegrambots.meta.api.methods.send.SendDocument query: [400] Bad Request: there is no document in the request
+2024-01-18 21:41:26 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 21:41:26 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 21:45:02 ERROR TelegramBot:65 - Error executing org.telegram.telegrambots.meta.api.methods.send.SendDocument query: [400] Bad Request: there is no document in the request
+2024-01-18 21:54:27 ERROR TelegramBot:65 - Error executing org.telegram.telegrambots.meta.api.methods.send.SendDocument query: [400] Bad Request: there is no document in the request
+2024-01-18 21:54:38 ERROR TelegramBot:65 - Error executing org.telegram.telegrambots.meta.api.methods.send.SendDocument query: [400] Bad Request: there is no document in the request
+2024-01-18 21:54:42 ERROR TelegramBot:65 - Error executing org.telegram.telegrambots.meta.api.methods.send.SendDocument query: [400] Bad Request: there is no document in the request
+2024-01-18 21:54:44 ERROR TelegramBot:65 - Error executing org.telegram.telegrambots.meta.api.methods.send.SendDocument query: [400] Bad Request: there is no document in the request
+2024-01-18 21:54:46 ERROR TelegramBot:65 - Error executing org.telegram.telegrambots.meta.api.methods.send.SendDocument query: [400] Bad Request: there is no document in the request
+2024-01-18 21:54:57 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 21:56:25 ERROR TelegramBot:65 - Error executing org.telegram.telegrambots.meta.api.methods.send.SendDocument query: [400] Bad Request: there is no document in the request
+2024-01-18 21:57:02 ERROR TelegramBot:65 - Error executing org.telegram.telegrambots.meta.api.methods.send.SendDocument query: [400] Bad Request: there is no document in the request
+2024-01-18 21:57:25 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 22:03:05 ERROR TelegramBot:65 - Error executing org.telegram.telegrambots.meta.api.methods.send.SendDocument query: [400] Bad Request: there is no document in the request
+2024-01-18 22:03:08 ERROR TelegramBot:65 - Error executing org.telegram.telegrambots.meta.api.methods.send.SendDocument query: [400] Bad Request: there is no document in the request
+2024-01-18 22:03:28 ERROR TelegramBot:65 - Error executing org.telegram.telegrambots.meta.api.methods.send.SendDocument query: [400] Bad Request: there is no document in the request
+2024-01-18 22:07:20 ERROR TelegramBot:65 - Error executing org.telegram.telegrambots.meta.api.methods.send.SendDocument query: [400] Bad Request: there is no document in the request
+2024-01-18 22:36:03 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 22:37:42 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 22:40:06 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 22:40:28 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 22:41:19 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 22:41:32 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 22:42:53 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 22:44:56 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 22:52:46 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 22:59:13 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 23:02:07 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 23:04:34 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 23:05:06 DEBUG UpdateProducerImpl:20 - /start
+2024-01-18 23:06:07 DEBUG UpdateProducerImpl:20 - /start
+2024-01-19 13:46:32 DEBUG UpdateProducerImpl:20 - /start
+2024-01-19 13:47:08 DEBUG UpdateProducerImpl:20 - /start
+2024-01-19 14:39:22 DEBUG UpdateProducerImpl:20 - /start
+2024-01-19 15:15:56 DEBUG UpdateProducerImpl:20 - /start
+2024-01-19 15:20:20 DEBUG UpdateProducerImpl:20 - /start
+2024-01-19 15:23:50 DEBUG UpdateProducerImpl:20 - /start
+2024-01-19 15:23:50 DEBUG UpdateProducerImpl:20 - vf
+2024-01-19 15:38:57 DEBUG UpdateProducerImpl:20 - /start
+2024-01-19 15:38:57 ERROR UpdateController:43 - Unsupported message type is received Update(updateId=223453943, message=null, inlineQuery=null, chosenInlineQuery=null, callbackQuery=null, editedMessage=null, channelPost=null, editedChannelPost=null, shippingQuery=null, preCheckoutQuery=null, poll=null, pollAnswer=null, myChatMember=ChatMemberUpdated(chat=Chat(id=415492714, type=private, title=null, firstName=Miguel, lastName=null, userName=QmRite, photo=null, description=null, inviteLink=null, pinnedMessage=null, stickerSetName=null, canSetStickerSet=null, permissions=null, slowModeDelay=null, bio=null, linkedChatId=null, location=null, messageAutoDeleteTime=null, hasPrivateForwards=null, HasProtectedContent=null, joinToSendMessages=null, joinByRequest=null), from=User(id=415492714, firstName=Miguel, isBot=false, lastName=null, userName=QmRite, languageCode=en, canJoinGroups=null, canReadAllGroupMessages=null, supportInlineQueries=null, isPremium=null, addedToAttachmentMenu=null), date=1705660730, oldChatMember=ChatMemberBanned(status=kicked, user=User(id=6817834650, firstName=Business plan generator test, isBot=true, lastName=null, userName=Business_plan_generator_test_bot, languageCode=null, canJoinGroups=null, canReadAllGroupMessages=null, supportInlineQueries=null, isPremium=null, addedToAttachmentMenu=null), untilDate=0), newChatMember=ChatMemberMember(status=member, user=User(id=6817834650, firstName=Business plan generator test, isBot=true, lastName=null, userName=Business_plan_generator_test_bot, languageCode=null, canJoinGroups=null, canReadAllGroupMessages=null, supportInlineQueries=null, isPremium=null, addedToAttachmentMenu=null)), inviteLink=null), chatMember=null, chatJoinRequest=null)
+2024-01-19 15:42:41 DEBUG UpdateProducerImpl:20 - /start
+2024-01-19 15:44:14 DEBUG UpdateProducerImpl:20 - /start
+2024-01-19 15:53:15 DEBUG UpdateProducerImpl:20 - /start
+2024-01-19 15:55:18 DEBUG UpdateProducerImpl:20 - /start
+2024-01-19 15:57:55 DEBUG UpdateProducerImpl:20 - /start
