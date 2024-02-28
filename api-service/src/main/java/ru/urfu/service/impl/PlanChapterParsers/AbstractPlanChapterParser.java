@@ -5,11 +5,10 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 public abstract class AbstractPlanChapterParser {
     public abstract String getPlanChapter();
-    public abstract HashMap<String, String> getParsedContent(String rawContent);
+    public abstract String getParsedContentJSON(String rawContent);
 
     protected static String[] parseTable(String rawTable){
         var responseRows = rawTable.split("\n");

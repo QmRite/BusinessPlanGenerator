@@ -15,6 +15,10 @@ import ru.urfu.service.enums.PlanChapter;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+
+import static java.util.Map.entry;
 
 @Service
 @Log4j
@@ -28,6 +32,11 @@ public class ApiService {
     @Value("${yandex.uri}")
     private String yandexUri;
 
+    private static Map<PlanChapter, String> RequestNameByPlanChapter = Map.ofEntries(
+            entry(PlanChapter.DESCRIPTION, "request.json"),
+            entry(PlanChapter.PRODUCT_DESCRIPTION, "request2.json")
+    );
+
     public static HttpResponse sendRequestByPlanChapter(PlanChapter planChapter) throws IOException {
         HttpClient httpClient = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost("https://llm.api.cloud.yandex.net/foundationModels/v1/completion");
@@ -36,7 +45,10 @@ public class ApiService {
         String jsonRequest = null;
         try {
             //TODO поменять на относительный путь
-            jsonRequest = FileUtils.readFileToString(new File("C:\\Users\\user\\IdeaProjects\\BusinessPlanGenerator\\api-service\\src\\main\\resources\\request.json"), StandardCharsets.UTF_8);
+            jsonRequest = FileUtils.readFileToString(
+                    new File("C:\\Users\\user\\IdeaProjects\\BusinessPlanGenerator\\api-service\\src\\main\\resources\\"
+                            + RequestNameByPlanChapter.get(planChapter)),
+                    StandardCharsets.UTF_8);
         } catch (IOException e) {
             log.error("Невозможно прочитать файл запроса: " + e);
         }

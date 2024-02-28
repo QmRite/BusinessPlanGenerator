@@ -102,7 +102,6 @@ public class MainServiceImpl implements MainService {
         } else if (HELP.equals(serviceCommand)) {
             return help();
         } else if (START.equals(serviceCommand)) {
-            //return "Приветствую! Чтобы посмотреть список доступных команд введите /help";
             return start(chatId);
         } else {
             return "Неизвестная команда! Чтобы посмотреть список доступных команд введите /help";
@@ -112,7 +111,7 @@ public class MainServiceImpl implements MainService {
     private String start(Long chatId) {
         InputStream docStream;
         try {
-            docStream =  docUtils.getPlanChapterInputStream(PlanChapter.RESUME);
+            docStream =  docUtils.getPlanChapterInputStream(PlanChapter.PRODUCT_DESCRIPTION);
         } catch (IOException e) {
             log.error("Ошибка получения документа " + e);
             return "Ошибка. Попробуйте снова";

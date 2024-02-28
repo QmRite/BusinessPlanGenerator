@@ -69,3 +69,26 @@
 2024-01-19 15:55:20 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
 2024-01-19 15:57:56 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
 2024-02-12 19:39:34 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-02-28 16:06:10 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-02-28 16:07:03 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-02-28 16:07:41 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-02-28 16:09:36 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-02-28 16:42:36 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-02-28 17:00:06 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-02-28 17:08:39 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-02-28 17:09:41 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-02-28 17:10:23 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-02-28 17:31:55 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-02-28 17:31:55 ERROR MainServiceImpl:116 - Ошибка получения документа org.apache.http.conn.HttpHostConnectException: Connect to localhost:8087 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+2024-02-28 17:32:38 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-02-28 17:33:55 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-02-28 17:40:30 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-02-28 17:40:36 ERROR MainServiceImpl:116 - Ошибка получения документа org.apache.http.conn.HttpHostConnectException: Connect to localhost:8087 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+2024-02-28 17:41:14 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-02-28 17:42:01 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-02-28 17:42:30 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-02-28 17:44:26 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-02-28 17:46:04 ERROR MainServiceImpl:116 - Ошибка получения документа org.apache.http.conn.HttpHostConnectException: Connect to localhost:8087 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+2024-02-28 17:55:10 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-02-28 17:57:01 ERROR MainServiceImpl:116 - Ошибка получения документа org.apache.http.conn.HttpHostConnectException: Connect to localhost:8087 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+2024-02-28 18:01:34 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received

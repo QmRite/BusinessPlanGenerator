@@ -29,7 +29,7 @@ public class ApiController {
 
         HttpResponse response = null;
         try {
-            response = ApiService.sendRequestByPlanChapter(PlanChapter.RESUME);
+            response = ApiService.sendRequestByPlanChapter(PlanChapter.valueOf(planChapter.toUpperCase()));
         } catch (IOException e) {
             log.error("Ошибка при выполнении запроса к YandexAPI: " + e);
             return ResponseEntity.internalServerError().build();
@@ -44,7 +44,7 @@ public class ApiController {
             return ResponseEntity.internalServerError().build();
         }
 
-        var res = planChapterParser.getParsedContent(responseText);
+        var res = planChapterParser.getParsedContentJSON(responseText);
 
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_JSON)

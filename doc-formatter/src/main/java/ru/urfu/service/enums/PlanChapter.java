@@ -2,7 +2,8 @@ package ru.urfu.service.enums;
 
 public enum PlanChapter {
     RESUME("resume"),
-    DESCRIPTION("description");
+    DESCRIPTION("description"),
+    PRODUCT_DESCRIPTION("product_description"),;
 
     private final String value;
 

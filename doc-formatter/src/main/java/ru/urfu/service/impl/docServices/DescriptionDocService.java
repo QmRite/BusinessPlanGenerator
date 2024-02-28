@@ -1,11 +1,8 @@
-package ru.urfu.service.impl;
+package ru.urfu.service.impl.docServices;
 
 import lombok.extern.log4j.Log4j;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.output.ByteArrayOutputStream;
-import org.apache.http.util.EntityUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Service;
 
 import org.apache.poi.xwpf.usermodel.*;
@@ -13,8 +10,6 @@ import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.json.JSONObject;
 import ru.urfu.service.enums.PlanChapter;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -22,8 +17,14 @@ import java.util.regex.Pattern;
 
 @Service
 @Log4j
-public class DocService {
-    public byte[] createPlanChapterDoc(PlanChapter planChapter, JSONObject content) throws InvalidFormatException, IOException {
+public class DescriptionDocService extends AbstractDocService{
+    @Override
+    public String getPlanChapter() {
+        return PlanChapter.DESCRIPTION.toString();
+    }
+
+    @Override
+    public byte[] createPlanChapterDoc(JSONObject content) throws InvalidFormatException, IOException {
 
         Map<String, String> contentByPlaceHolder = new HashMap(content.toMap());
 
@@ -58,17 +59,4 @@ public class DocService {
         return binOut.toByteArray();
     }
 
-
-    public FileSystemResource getFileSystemResource(byte[] binaryContent) {
-        try {
-            //TODO добавить генерацию имени временного файла
-            File temp = File.createTempFile("tempFile", ".bin");
-            temp.deleteOnExit();
-            FileUtils.writeByteArrayToFile(temp, binaryContent);
-            return new FileSystemResource(temp);
-        } catch (IOException e) {
-            log.error(e);
-            return null;
-        }
-    }
 }

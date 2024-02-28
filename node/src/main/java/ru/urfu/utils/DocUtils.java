@@ -20,7 +20,7 @@ import java.io.InputStream;
 public class DocUtils {
     public InputStream getPlanChapterInputStream(PlanChapter planChapter) throws IOException {
         HttpClient httpClient = HttpClients.createDefault();
-        HttpGet httpGet = new HttpGet("http://localhost:8087/docFormatter/get_new_plan_chapter");
+        HttpGet httpGet = new HttpGet("http://localhost:8087/docFormatter/get_new_plan_chapter/" + planChapter);
 
         HttpResponse response = httpClient.execute(httpGet);
         return response.getEntity().getContent();

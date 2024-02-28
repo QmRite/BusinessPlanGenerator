@@ -1,5 +1,7 @@
 package ru.urfu.service.impl.PlanChapterParsers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
 import ru.urfu.service.enums.PlanChapter;
 
@@ -13,7 +15,7 @@ public class DescriptionParser extends AbstractPlanChapterParser {
     }
 
     @Override
-    public HashMap<String, String> getParsedContent(String rawContent) {
+    public String getParsedContentJSON(String rawContent) {
 
         //TODO поменять. Скорее всего сделать фабрику
         var textRows = parseTable(rawContent);
@@ -25,7 +27,14 @@ public class DescriptionParser extends AbstractPlanChapterParser {
             answersByPlaceHolder.put(placeHolders[i], textRows[i]);
         }
 
-        return answersByPlaceHolder;
+        String res = null;
+        try {
+            res = new ObjectMapper().writeValueAsString(answersByPlaceHolder);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+        return res;
     }
 
 }
