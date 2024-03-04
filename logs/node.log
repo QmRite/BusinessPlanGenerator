@@ -92,3 +92,27 @@
 2024-02-28 17:55:10 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
 2024-02-28 17:57:01 ERROR MainServiceImpl:116 - Ошибка получения документа org.apache.http.conn.HttpHostConnectException: Connect to localhost:8087 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
 2024-02-28 18:01:34 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-04 13:56:29 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-04 13:56:30 ERROR MainServiceImpl:115 - Ошибка получения документа org.apache.http.conn.HttpHostConnectException: Connect to localhost:8087 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+2024-03-04 14:06:45 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-04 14:11:53 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-04 14:13:11 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-04 14:13:51 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-04 14:13:57 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-04 14:14:12 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-04 14:14:17 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-04 14:14:18 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-04 14:14:19 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-04 14:14:37 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-04 14:40:10 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-04 14:40:36 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-04 14:40:54 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-04 14:41:20 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-04 14:42:09 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-04 14:42:15 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-04 14:42:33 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-04 14:43:03 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-04 14:43:18 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-04 14:44:21 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-04 14:44:39 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-04 14:45:17 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received

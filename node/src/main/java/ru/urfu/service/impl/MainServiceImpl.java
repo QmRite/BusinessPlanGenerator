@@ -12,8 +12,10 @@ import ru.urfu.dao.AppUserDAO;
 import ru.urfu.dao.RawDataDAO;
 import ru.urfu.entity.AppUser;
 import ru.urfu.entity.RawData;
+import ru.urfu.entity.enums.UserState;
 import ru.urfu.service.MainService;
 import ru.urfu.service.ProducerService;
+import ru.urfu.service.convertors.PlanChapterConvertor;
 import ru.urfu.service.enums.PlanChapter;
 import ru.urfu.service.enums.ServiceCommand;
 import ru.urfu.utils.DocUtils;
@@ -24,8 +26,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import static ru.urfu.entity.enums.UserState.BASIC_STATE;
-import static ru.urfu.entity.enums.UserState.WAIT_FOR_EMAIL_STATE;
+import static ru.urfu.entity.enums.UserState.*;
 import static ru.urfu.service.enums.ServiceCommand.*;
 
 @Service
@@ -52,12 +53,13 @@ public class MainServiceImpl implements MainService {
         var chatId = update.getMessage().getChatId();
         var output = "";
 
-
         var serviceCommand = ServiceCommand.fromValue(text);
         if (CANCEL.equals(serviceCommand)) {
             output = cancelProcess(appUser);
         } else if (BASIC_STATE.equals(userState)){
             output = processServiceCommand(chatId, appUser, text);
+        } else if (CHOOSE_CHAPTER.equals(userState)){
+            output = createPlanChapter(chatId, text);
         } else if (WAIT_FOR_EMAIL_STATE.equals(userState)){
             //TODO добавить обработку мейла
         } else{
@@ -77,12 +79,7 @@ public class MainServiceImpl implements MainService {
         } catch (IOException e) {
             log.error("Не удалось перевести файл в массив байтов" + e);
         }
-/*        byte[] docData = new byte[0];
-        try {
-            docData = docStream.readAllBytes();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }*/
+
         producerService.produceDoc(docInfo);
     }
 
@@ -102,22 +99,26 @@ public class MainServiceImpl implements MainService {
         } else if (HELP.equals(serviceCommand)) {
             return help();
         } else if (START.equals(serviceCommand)) {
-            return start(chatId);
+            appUser.setState(UserState.CHOOSE_CHAPTER);
+            appUserDAO.saveAndFlush(appUser);
+            return "Выберете главу бизнес-плана";
         } else {
+
             return "Неизвестная команда! Чтобы посмотреть список доступных команд введите /help";
         }
     }
 
-    private String start(Long chatId) {
+    private String createPlanChapter(Long chatId, String planChapterText) {
+        var planChapter = PlanChapterConvertor.PlanChapterByText.get(planChapterText);
         InputStream docStream;
         try {
-            docStream =  docUtils.getPlanChapterInputStream(PlanChapter.PRODUCT_DESCRIPTION);
+            docStream =  docUtils.getPlanChapterInputStream(planChapter);
         } catch (IOException e) {
             log.error("Ошибка получения документа " + e);
             return "Ошибка. Попробуйте снова";
         }
         sendDoc(chatId, docStream, "Caption");
-        return "стартрт";
+        return "Файл успешно создан";
     }
 
     private String help() {
