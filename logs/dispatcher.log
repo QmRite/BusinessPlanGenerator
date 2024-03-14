@@ -117,3 +117,15 @@
 2024-03-04 14:44:20 DEBUG UpdateProducerImpl:20 - /start
 2024-03-04 14:44:39 DEBUG UpdateProducerImpl:20 - 1. Описание бизнес-идеи
 2024-03-04 14:45:17 DEBUG UpdateProducerImpl:20 - 2. Описание продукта
+2024-03-10 17:14:13 DEBUG UpdateProducerImpl:20 - 1. Описание бизнес-идеи
+2024-03-10 17:16:28 DEBUG UpdateProducerImpl:20 - 1. Описание бизнес-идеи
+2024-03-10 17:17:01 DEBUG UpdateProducerImpl:20 - /start
+2024-03-10 17:17:10 DEBUG UpdateProducerImpl:20 - 1. Описание бизнес-идеи
+2024-03-14 10:55:08 DEBUG UpdateProducerImpl:20 - 1. Описание бизнес-идеи
+2024-03-14 10:55:25 DEBUG UpdateProducerImpl:20 - /start
+2024-03-14 10:55:34 DEBUG UpdateProducerImpl:20 - 1. Описание бизнес-идеи
+2024-03-14 10:56:17 ERROR TelegramBot:66 - Error executing org.telegram.telegrambots.meta.api.methods.send.SendDocument query: [400] Bad Request: file must be non-empty
+2024-03-14 10:57:49 DEBUG UpdateProducerImpl:20 - 1. Описание бизнес-идеи
+2024-03-14 11:01:20 ERROR TelegramBot:66 - Error executing org.telegram.telegrambots.meta.api.methods.send.SendDocument query: [400] Bad Request: file must be non-empty
+2024-03-14 11:01:26 DEBUG UpdateProducerImpl:20 - 1. Описание бизнес-идеи
+2024-03-14 11:26:16 DEBUG UpdateProducerImpl:20 - 1. Описание бизнес-идеи

@@ -1,16 +1,12 @@
 package ru.urfu.utils;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.poi.openxml4j.opc.OPCPackage;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.json.JSONObject;
 import org.springframework.stereotype.Component;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.InputFile;
-import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.urfu.service.enums.PlanChapter;
 
 import java.io.IOException;
@@ -18,11 +14,13 @@ import java.io.InputStream;
 
 @Component
 public class DocUtils {
-    public InputStream getPlanChapterInputStream(PlanChapter planChapter) throws IOException {
+    public InputStream getPlanChapterInputStream(PlanChapter planChapter, String body) throws IOException {
         HttpClient httpClient = HttpClients.createDefault();
-        HttpGet httpGet = new HttpGet("http://localhost:8087/docFormatter/get_new_plan_chapter/" + planChapter);
+        HttpPost httpPost = new HttpPost("http://localhost:8087/docFormatter/new_plan_chapter/" + planChapter);
+        HttpEntity entity = new StringEntity(body, "UTF-8");
+        httpPost.setEntity(entity);
 
-        HttpResponse response = httpClient.execute(httpGet);
+        HttpResponse response = httpClient.execute(httpPost);
         return response.getEntity().getContent();
     }
 }

@@ -23,8 +23,9 @@ public class ApiController {
         this.planChapterFactory = planChapterFactory;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/get_plan_content/{plan_chapter}")
-    public ResponseEntity<?> getPlanContentByChapter(@PathVariable("plan_chapter") String planChapter) {
+    @RequestMapping(method = RequestMethod.POST, value = "/new_plan_content/{plan_chapter}")
+    public ResponseEntity<?> PlanContentByChapter(@PathVariable("plan_chapter") String planChapter,
+                                                  @RequestBody String requestText) {
         //TODO для формирования badRequest добавить ControllerAdvice
 
         HttpResponse response = null;

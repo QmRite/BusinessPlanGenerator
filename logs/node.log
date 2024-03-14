@@ -116,3 +116,16 @@
 2024-03-04 14:44:21 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
 2024-03-04 14:44:39 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
 2024-03-04 14:45:17 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-10 17:16:28 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-10 17:17:02 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-10 17:17:10 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-10 17:18:17 ERROR MainServiceImpl:121 - Ошибка получения документа org.apache.http.conn.HttpHostConnectException: Connect to localhost:8087 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+2024-03-14 10:55:09 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-14 10:55:25 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-14 10:55:34 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-14 10:57:49 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-14 11:00:14 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-14 11:01:26 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-14 11:26:28 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-14 11:27:25 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-03-14 11:27:25 ERROR MainServiceImpl:123 - Ошибка получения документа org.apache.http.conn.HttpHostConnectException: Connect to localhost:8087 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect

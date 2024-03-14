@@ -19,12 +19,12 @@ import ru.urfu.service.convertors.PlanChapterConvertor;
 import ru.urfu.service.enums.PlanChapter;
 import ru.urfu.service.enums.ServiceCommand;
 import ru.urfu.utils.DocUtils;
+import ru.urfu.utils.RequestTextGenerators.Factory.RequestTextFactory;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static ru.urfu.entity.enums.UserState.*;
 import static ru.urfu.service.enums.ServiceCommand.*;
@@ -110,9 +110,15 @@ public class MainServiceImpl implements MainService {
 
     private String createPlanChapter(Long chatId, String planChapterText) {
         var planChapter = PlanChapterConvertor.PlanChapterByText.get(planChapterText);
+        var requestTextGenerator = RequestTextFactory.getRequestText(planChapter.toString());
+        //TODO ДЕЛАТЬ 11.03
+        var requestText = requestTextGenerator.getRequestText(new ArrayList<>(Arrays.asList("интернет-магазин цветов «Розы Урала»", "интернет-магазин цветов «Розы Урала»",
+                "Выбор по каталогу или оформление индивидуального заказа цветов, оплата и указание адреса и времени доставки на сайте www.розыурала.рф",
+                "Россия, Екатеринбург", "Обмен", "20")));
+
         InputStream docStream;
         try {
-            docStream =  docUtils.getPlanChapterInputStream(planChapter);
+            docStream =  docUtils.getPlanChapterInputStream(planChapter, requestText);
         } catch (IOException e) {
             log.error("Ошибка получения документа " + e);
             return "Ошибка. Попробуйте снова";
