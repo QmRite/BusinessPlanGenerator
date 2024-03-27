@@ -30,7 +30,7 @@ public class ApiController {
 
         HttpResponse response = null;
         try {
-            response = ApiService.sendRequestByPlanChapter(PlanChapter.valueOf(planChapter.toUpperCase()));
+            response = ApiService.sendRequestByPlanChapter(PlanChapter.valueOf(planChapter.toUpperCase()), requestText);
         } catch (IOException e) {
             log.error("Ошибка при выполнении запроса к YandexAPI: " + e);
             return ResponseEntity.internalServerError().build();

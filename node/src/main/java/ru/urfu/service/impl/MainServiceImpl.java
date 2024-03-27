@@ -1,12 +1,8 @@
 package ru.urfu.service.impl;
 
 import lombok.extern.log4j.Log4j;
-import org.apache.http.HttpResponse;
-import org.json.JSONObject;
 import org.springframework.stereotype.Service;
-import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.urfu.dao.AppUserDAO;
 import ru.urfu.dao.RawDataDAO;
@@ -16,12 +12,10 @@ import ru.urfu.entity.enums.UserState;
 import ru.urfu.service.MainService;
 import ru.urfu.service.ProducerService;
 import ru.urfu.service.convertors.PlanChapterConvertor;
-import ru.urfu.service.enums.PlanChapter;
 import ru.urfu.service.enums.ServiceCommand;
 import ru.urfu.utils.DocUtils;
 import ru.urfu.utils.RequestTextGenerators.Factory.RequestTextFactory;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
@@ -56,12 +50,10 @@ public class MainServiceImpl implements MainService {
         var serviceCommand = ServiceCommand.fromValue(text);
         if (CANCEL.equals(serviceCommand)) {
             output = cancelProcess(appUser);
-        } else if (BASIC_STATE.equals(userState)){
+        } else if (MAIN_MENU_STATE.equals(userState)){
             output = processServiceCommand(chatId, appUser, text);
-        } else if (CHOOSE_CHAPTER.equals(userState)){
-            output = createPlanChapter(chatId, text);
-        } else if (WAIT_FOR_EMAIL_STATE.equals(userState)){
-            //TODO добавить обработку мейла
+        } else if (CHAPTER_SELECTION_STATE.equals(userState)){
+            output = createPlanChapter(chatId, text, appUser);
         } else{
             log.error("Unknown user state: " + userState);
             output = "Неизвестная ошибка! Введите /cancel и попробуйте снова.";
@@ -99,7 +91,7 @@ public class MainServiceImpl implements MainService {
         } else if (HELP.equals(serviceCommand)) {
             return help();
         } else if (START.equals(serviceCommand)) {
-            appUser.setState(UserState.CHOOSE_CHAPTER);
+            appUser.setState(UserState.CHAPTER_SELECTION_STATE);
             appUserDAO.saveAndFlush(appUser);
             return "Выберете главу бизнес-плана";
         } else {
@@ -108,7 +100,10 @@ public class MainServiceImpl implements MainService {
         }
     }
 
-    private String createPlanChapter(Long chatId, String planChapterText) {
+    private String createPlanChapter(Long chatId, String planChapterText, AppUser appUser) {
+        appUser.setState(DIALOG_STATE);
+        appUserDAO.saveAndFlush(appUser);
+
         var planChapter = PlanChapterConvertor.PlanChapterByText.get(planChapterText);
         var requestTextGenerator = RequestTextFactory.getRequestText(planChapter.toString());
         //TODO ДЕЛАТЬ 11.03
@@ -134,7 +129,7 @@ public class MainServiceImpl implements MainService {
     }
 
     private String cancelProcess(AppUser appUser) {
-        appUser.setState(BASIC_STATE);
+        appUser.setState(MAIN_MENU_STATE);
         appUserDAO.save(appUser);
 
         return "Команда отменена.";
@@ -151,7 +146,7 @@ public class MainServiceImpl implements MainService {
                     .lastName(telegramUser.getLastName())
                     //TODO изменить значение по умолчанию после добавления регистрации
                     .isActive(true)
-                    .state(BASIC_STATE)
+                    .state(MAIN_MENU_STATE)
                     .build();
             return appUserDAO.save(transientAppUser);
         }

@@ -6,6 +6,7 @@ import ru.urfu.entity.enums.UserState;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -30,5 +31,7 @@ public class AppUser {
     private Boolean isActive;
     @Enumerated(EnumType.STRING)
     private UserState state;
-
+    private int userStatePosition;
+    @OneToMany(mappedBy = "user")
+    private List<Answer> answers;
 }

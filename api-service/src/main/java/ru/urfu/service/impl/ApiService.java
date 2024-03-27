@@ -37,7 +37,7 @@ public class ApiService {
             entry(PlanChapter.PRODUCT_DESCRIPTION, "request2.json")
     );
 
-    public static HttpResponse sendRequestByPlanChapter(PlanChapter planChapter) throws IOException {
+    public static HttpResponse sendRequestByPlanChapter(PlanChapter planChapter, String requestText) throws IOException {
         HttpClient httpClient = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost("https://llm.api.cloud.yandex.net/foundationModels/v1/completion");
 
@@ -53,6 +53,7 @@ public class ApiService {
             log.error("Невозможно прочитать файл запроса: " + e);
         }
 
+        jsonRequest = jsonRequest.replace("[1]", requestText);
         StringEntity jsonBody = new StringEntity(jsonRequest, ContentType.APPLICATION_JSON);
         httpPost.setEntity(jsonBody);
 

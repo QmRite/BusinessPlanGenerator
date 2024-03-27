@@ -129,3 +129,10 @@
 2024-03-14 11:01:20 ERROR TelegramBot:66 - Error executing org.telegram.telegrambots.meta.api.methods.send.SendDocument query: [400] Bad Request: file must be non-empty
 2024-03-14 11:01:26 DEBUG UpdateProducerImpl:20 - 1. Описание бизнес-идеи
 2024-03-14 11:26:16 DEBUG UpdateProducerImpl:20 - 1. Описание бизнес-идеи
+2024-03-14 18:49:07 ERROR TelegramBot:66 - Error executing org.telegram.telegrambots.meta.api.methods.send.SendDocument query: [400] Bad Request: file must be non-empty
+2024-03-14 18:49:08 DEBUG UpdateProducerImpl:20 - /start
+2024-03-14 18:49:08 DEBUG UpdateProducerImpl:20 - 1. Описание бизнес-идеи
+2024-03-14 18:49:12 DEBUG UpdateProducerImpl:20 - /start
+2024-03-14 18:52:02 DEBUG UpdateProducerImpl:20 - /start
+2024-03-14 18:53:26 DEBUG UpdateProducerImpl:20 - 1. Описание бизнес-идеи
+2024-03-14 18:59:30 DEBUG UpdateProducerImpl:20 - 1. Описание бизнес-идеи
