@@ -68,7 +68,7 @@ public class UpdateController {
 
     public void setView(SendMessage sendMessage) {
 
-        sendMessage.setReplyMarkup(getChapterReplyMarkup());
+        //sendMessage.setReplyMarkup(getChapterReplyMarkup());
 
         telegramBot.sendAnswerMessage(sendMessage);
     }
