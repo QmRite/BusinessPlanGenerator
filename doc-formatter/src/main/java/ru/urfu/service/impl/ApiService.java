@@ -3,14 +3,13 @@ package ru.urfu.service.impl;
 import lombok.extern.log4j.Log4j;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
-import ru.urfu.service.enums.PlanChapter;
+import ru.urfu.entity.enums.PlanChapter;
 
 import java.io.IOException;
 

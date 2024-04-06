@@ -3,7 +3,7 @@ package ru.urfu.service.impl.PlanChapterParsers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
-import ru.urfu.service.enums.PlanChapter;
+import ru.urfu.entity.enums.PlanChapter;
 
 import java.util.HashMap;
 

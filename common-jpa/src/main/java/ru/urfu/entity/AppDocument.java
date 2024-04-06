@@ -1,4 +1,4 @@
-package ru.urfu.service.entity;
+package ru.urfu.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,8 +18,7 @@ public class AppDocument {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String docName;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private BinaryContent binaryContent;
     private String mimeType;
-    private Long fileSize;
 }

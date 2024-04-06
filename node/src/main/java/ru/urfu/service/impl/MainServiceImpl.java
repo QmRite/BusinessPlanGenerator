@@ -4,16 +4,20 @@ import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import ru.urfu.dao.AnswerDAO;
 import ru.urfu.dao.AppUserDAO;
 import ru.urfu.dao.RawDataDAO;
+import ru.urfu.entity.Answer;
 import ru.urfu.entity.AppUser;
 import ru.urfu.entity.RawData;
 import ru.urfu.entity.enums.UserState;
 import ru.urfu.service.MainService;
 import ru.urfu.service.ProducerService;
 import ru.urfu.service.convertors.PlanChapterConvertor;
+import ru.urfu.entity.enums.PlanChapter;
 import ru.urfu.service.enums.ServiceCommand;
 import ru.urfu.utils.DocUtils;
+import ru.urfu.utils.RequestTextGenerators.AbstractRequestTextGenerator;
 import ru.urfu.utils.RequestTextGenerators.Factory.RequestTextFactory;
 
 import java.io.IOException;
@@ -31,11 +35,14 @@ public class MainServiceImpl implements MainService {
     private final DocUtils docUtils;
     private final AppUserDAO appUserDAO;
 
-    public MainServiceImpl(RawDataDAO rawDataDAO, ProducerService producerService, DocUtils docUtils, AppUserDAO appUserDAO) {
+    private final AnswerDAO answerDAO;
+
+    public MainServiceImpl(RawDataDAO rawDataDAO, ProducerService producerService, DocUtils docUtils, AppUserDAO appUserDAO, AnswerDAO answerDAO) {
         this.rawDataDAO = rawDataDAO;
         this.producerService = producerService;
         this.docUtils = docUtils;
         this.appUserDAO = appUserDAO;
+        this.answerDAO = answerDAO;
     }
 
     @Override
@@ -53,8 +60,10 @@ public class MainServiceImpl implements MainService {
         } else if (MAIN_MENU_STATE.equals(userState)){
             output = processServiceCommand(chatId, appUser, text);
         } else if (CHAPTER_SELECTION_STATE.equals(userState)){
-            output = createPlanChapter(chatId, text, appUser);
-        } else{
+            output = startDialog(chatId, text, appUser);
+        } else if (DIALOG_STATE.equals(userState)){
+            output = startDialog(chatId, text, appUser);
+        }else{
             log.error("Unknown user state: " + userState);
             output = "Неизвестная ошибка! Введите /cancel и попробуйте снова.";
         }
@@ -100,25 +109,73 @@ public class MainServiceImpl implements MainService {
         }
     }
 
-    private String createPlanChapter(Long chatId, String planChapterText, AppUser appUser) {
+    private String startDialog(Long chatId, String userAnswer, AppUser appUser) {
         appUser.setState(DIALOG_STATE);
+
+        var currentStatePosition = appUser.getUserStatePosition();
+
+        PlanChapter planChapter;
+        if (currentStatePosition == 0){
+            planChapter = PlanChapterConvertor.PlanChapterByText.get(userAnswer);
+            appUser.setPlanChapter(planChapter);
+        }
+
+        planChapter = appUser.getPlanChapter();
+        var requestTextGenerator = RequestTextFactory.getRequestText(planChapter.toString());
+
+        if (currentStatePosition == 1) {
+            var answers = new ArrayList<Answer>();
+            appUser.setAnswers(answers);
+        }
+
+        var userAnswers = appUser.getAnswers();
+        if (currentStatePosition > 0){
+            var answer = new Answer();
+            answer.setUser(appUser);
+            answer.setAnswer(userAnswer);
+            userAnswers.add(answer);
+            appUser.setAnswers(userAnswers);
+            answerDAO.saveAndFlush(answer);
+        }
+
+        appUser.setUserStatePosition(currentStatePosition + 1);
         appUserDAO.saveAndFlush(appUser);
 
-        var planChapter = PlanChapterConvertor.PlanChapterByText.get(planChapterText);
-        var requestTextGenerator = RequestTextFactory.getRequestText(planChapter.toString());
-        //TODO ДЕЛАТЬ 11.03
-        var requestText = requestTextGenerator.getRequestText(new ArrayList<>(Arrays.asList("интернет-магазин цветов «Розы Урала»", "интернет-магазин цветов «Розы Урала»",
-                "Выбор по каталогу или оформление индивидуального заказа цветов, оплата и указание адреса и времени доставки на сайте www.розыурала.рф",
-                "Россия, Екатеринбург", "Обмен", "20")));
+        var questionsCount = requestTextGenerator.getQuestions().size();
+        if (!(currentStatePosition > questionsCount)){
+            return requestTextGenerator.getQuestions().get(currentStatePosition);
+        }
+
+        appUser.setState(WAITING_FOR_DOCUMENT_STATE);
+        appUserDAO.saveAndFlush(appUser);
+
+        var answers = userAnswers.stream().map(Answer::getAnswer).toArray(String[]::new);
+
+        return createPlanChapter(chatId, planChapter, answers, requestTextGenerator, appUser);
+    }
+
+    private String createPlanChapter(Long chatId, PlanChapter planChapter, String[] answers,
+                                     AbstractRequestTextGenerator requestTextGenerator, AppUser appUser) {
+        var requestText = requestTextGenerator.getRequestText(answers);
 
         InputStream docStream;
         try {
             docStream =  docUtils.getPlanChapterInputStream(planChapter, requestText);
         } catch (IOException e) {
             log.error("Ошибка получения документа " + e);
+
+            appUser.setState(MAIN_MENU_STATE);
+            appUser.getAnswers().clear();
+            appUserDAO.saveAndFlush(appUser);
+
             return "Ошибка. Попробуйте снова";
         }
         sendDoc(chatId, docStream, "Caption");
+
+        appUser.setState(MAIN_MENU_STATE);
+        appUser.getAnswers().clear();
+        appUserDAO.saveAndFlush(appUser);
+
         return "Файл успешно создан";
     }
 

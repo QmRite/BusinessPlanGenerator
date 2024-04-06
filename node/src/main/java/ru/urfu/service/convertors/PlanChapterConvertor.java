@@ -1,6 +1,6 @@
 package ru.urfu.service.convertors;
 
-import ru.urfu.service.enums.PlanChapter;
+import ru.urfu.entity.enums.PlanChapter;
 
 import java.util.Map;
 

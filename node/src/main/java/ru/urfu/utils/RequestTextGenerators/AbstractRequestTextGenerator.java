@@ -7,10 +7,14 @@ public abstract class AbstractRequestTextGenerator {
 
     final List<String> questions;
 
+    public List<String> getQuestions(){
+        return questions;
+    };
+
     AbstractRequestTextGenerator(List<String> questions) {
         this.questions = questions;
     }
 
     public abstract String getPlanChapter();
-    public abstract String getRequestText(ArrayList<String> answers);
+    public abstract String getRequestText(String[] answers);
 }

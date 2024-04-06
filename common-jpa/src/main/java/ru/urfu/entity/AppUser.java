@@ -2,7 +2,7 @@ package ru.urfu.entity;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import ru.urfu.entity.enums.UserState;
+import ru.urfu.entity.enums.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -30,8 +30,10 @@ public class AppUser {
     private String email;
     private Boolean isActive;
     @Enumerated(EnumType.STRING)
+    private PlanChapter planChapter;
+    @Enumerated(EnumType.STRING)
     private UserState state;
     private int userStatePosition;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Answer> answers;
 }

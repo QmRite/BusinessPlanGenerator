@@ -5,7 +5,7 @@ import org.apache.http.HttpResponse;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.urfu.service.enums.PlanChapter;
+import ru.urfu.entity.enums.PlanChapter;
 import ru.urfu.service.impl.ApiService;
 import ru.urfu.service.impl.PlanChapterParsers.Factory.PlanChapterFactory;
 

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.apache.poi.xwpf.usermodel.*;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.json.JSONObject;
-import ru.urfu.service.enums.PlanChapter;
+import ru.urfu.entity.enums.PlanChapter;
 
 import java.io.IOException;
 import java.util.*;

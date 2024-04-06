@@ -1,8 +1,10 @@
-package ru.urfu.service.dao;
+package ru.urfu.dao;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.urfu.service.entity.BinaryContent;
+import org.springframework.stereotype.Component;
+import ru.urfu.entity.BinaryContent;
 
+@Component
 public interface BinaryContentDAO extends JpaRepository<BinaryContent, Long> {
 }

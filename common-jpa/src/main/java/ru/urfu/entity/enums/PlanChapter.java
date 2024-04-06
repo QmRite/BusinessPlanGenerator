@@ -1,4 +1,4 @@
-package ru.urfu.service.enums;
+package ru.urfu.entity.enums;
 
 public enum PlanChapter {
     RESUME("resume"),

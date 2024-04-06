@@ -9,6 +9,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import ru.urfu.service.UpdateProducer;
+import ru.urfu.service.impl.ProducerService;
 import ru.urfu.utils.MessageUtils;
 
 import java.io.ByteArrayInputStream;
@@ -26,11 +27,11 @@ import static ru.urfu.model.RabbitQueue.TEXT_MESSAGE_UPDATE;
 public class UpdateController {
     private TelegramBot telegramBot;
     private final MessageUtils messageUtils;
-    private final UpdateProducer updateProducer;
+    private final ProducerService producerService;
 
-    public UpdateController(MessageUtils messageUtils, UpdateProducer updateProducer) {
+    public UpdateController(MessageUtils messageUtils, ProducerService producerService) {
         this.messageUtils = messageUtils;
-        this.updateProducer = updateProducer;
+        this.producerService = producerService;
     }
 
     public void registerBot(TelegramBot telegramBot) {
@@ -98,7 +99,7 @@ public class UpdateController {
     }
 
     private void processTextMessage(Update update) {
-        updateProducer.produce(TEXT_MESSAGE_UPDATE, update);
+        producerService.produceUpdate(update);
     }
 
     private ReplyKeyboardMarkup getChapterReplyMarkup(){

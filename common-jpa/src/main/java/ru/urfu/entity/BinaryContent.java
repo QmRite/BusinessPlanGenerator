@@ -1,4 +1,4 @@
-package ru.urfu.service.entity;
+package ru.urfu.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
