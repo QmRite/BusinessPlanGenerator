@@ -22,7 +22,7 @@ public class ProduceService {
     }
 
     public void produceMessage(Long chatId, String text) {
-        var sendMessage = messageUtils.createSendMessage(chatId, text + "Only text");
+        var sendMessage = messageUtils.createSendMessage(chatId, text);
 
         HttpClient httpClient = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost("http://localhost:8084/dispatcher/message/");
@@ -42,7 +42,7 @@ public class ProduceService {
     }
 
     public void produceMessage(Long chatId, String text, ArrayList<String> rowsString) {
-        var sendMessage = messageUtils.createSendMessage(chatId, text + "text+Rows", rowsString);
+        var sendMessage = messageUtils.createSendMessage(chatId, text, rowsString);
 
         HttpClient httpClient = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost("http://localhost:8084/dispatcher/message/");

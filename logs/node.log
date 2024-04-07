@@ -2745,3 +2745,6 @@
 2024-03-31 17:14:12 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
 2024-03-31 17:14:13 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
 2024-03-31 17:14:13 DEBUG ConsumerServiceImpl:26 - NODE: Text message is received
+2024-04-07 12:07:48 ERROR UserStateService:53 - Unknown user state: Главное меню
+2024-04-07 12:21:08 ERROR UserStateService:53 - Unknown user state: Главное меню
+2024-04-07 17:15:57 ERROR UserStateService:68 - Unknown user state: 

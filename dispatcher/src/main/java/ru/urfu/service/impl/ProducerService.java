@@ -25,11 +25,7 @@ public class ProducerService {
         httpPost.addHeader("content-type", "application/json");
         JSONObject updateJson = new JSONObject(update);
         StringEntity params = null;
-        try {
-            params = new StringEntity(updateJson.toString());
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
+        params = new StringEntity(updateJson.toString(), "UTF-8");
         httpPost.setEntity(params);
 
         try {

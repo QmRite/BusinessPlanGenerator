@@ -5,13 +5,13 @@ public enum UserState {
 
     HELP_STATE("Помощь"),
 
-    PREVIOUS_FILE_SELECTION_STATE("--"),
+    STORAGE_FILE_SELECTION_STATE("Выбор ранее созданного файла"),
 
-    PREVIOUS_FILE_VIEWING_STATE("---"),
+    STORAGE_VIEWING_STATE("Ранее созданные файлы"),
 
-    CHAPTER_SELECTION_STATE("Создание главу"),
+    CHAPTER_SELECTION_STATE("Создать главу бизнес-плана"),
 
-    DIALOG_STATE("Выбор конкретной главы"),
+    DIALOG_STATE("Создание главы бизнес-плана"),
 
     WAITING_FOR_DOCUMENT_STATE(""),
 

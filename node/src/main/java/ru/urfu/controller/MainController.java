@@ -14,6 +14,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.urfu.entity.enums.PlanChapter;
 import ru.urfu.service.api.ProduceService;
+import ru.urfu.service.api.UserStateService;
 import ru.urfu.service.impl.ApiService;
 import ru.urfu.utils.MessageUtils;
 
@@ -27,19 +28,16 @@ import java.util.ArrayList;
 public class MainController {
 
     private final ProduceService produceService;
+    private final UserStateService userStateService;
 
-    public MainController(ProduceService produceService) {
+    public MainController(ProduceService produceService, UserStateService userStateService) {
         this.produceService = produceService;
+        this.userStateService = userStateService;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/UserUpdate/")
     public void UserUpdate(@RequestBody Update update) {
-        //TODO для формирования badRequest добавить ControllerAdvice
-
-        var text = update.getMessage().getText();
-        var chatId = update.getMessage().getChatId();
-
-        produceMessage(chatId, text);
+        userStateService.processTextMessage(update);
     }
 
     private void produceMessage(Long chatId, String input){
