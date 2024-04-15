@@ -5,10 +5,12 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import ru.urfu.controller.UpdateController;
 import ru.urfu.service.AnswerConsumer;
 
 import java.io.InputStream;
+import java.util.ArrayDeque;
 import java.util.HashMap;
 
 import static ru.urfu.model.RabbitQueue.ANSWER_DOC;

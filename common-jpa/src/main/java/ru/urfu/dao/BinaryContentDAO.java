@@ -1,3 +1,4 @@
+/*
 package ru.urfu.dao;
 
 
@@ -8,3 +9,4 @@ import ru.urfu.entity.BinaryContent;
 @Component
 public interface BinaryContentDAO extends JpaRepository<BinaryContent, Long> {
 }
+*/

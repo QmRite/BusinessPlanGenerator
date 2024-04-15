@@ -73,6 +73,16 @@ public class UpdateController {
         telegramBot.sendAnswerMessage(sendMessage);
     }
 
+    public void setView(SendDocument sendDocument) {
+        telegramBot.sendAnswerMessage(sendDocument);
+    }
+
+    public void setView(Long chatId, InputStream docStream, ReplyKeyboardMarkup replyKeyboardMarkup) {
+        var sendDocument = createSendDocument(chatId, docStream, replyKeyboardMarkup);
+        telegramBot.sendAnswerMessage(sendDocument);
+    }
+
+
     public void setView(HashMap<String, Object> docData) {
         Long chatId = ((Number) docData.get("chatId")).longValue();
         var docBytes = docData.get("docStream").toString().getBytes();
@@ -83,61 +93,23 @@ public class UpdateController {
             throw new RuntimeException(e);
         }
         var docStream = new ByteArrayInputStream(decodedString);
-        var sendDocument = createSendDocument(chatId, docStream);
+        var sendDocument = createSendDocument(chatId, docStream, new ReplyKeyboardMarkup());
         telegramBot.sendAnswerMessage(sendDocument);
     }
 
-    private SendDocument createSendDocument(Long chatId, InputStream docStream) {
+
+    private SendDocument createSendDocument(Long chatId, InputStream docStream, ReplyKeyboardMarkup replyKeyboardMarkup) {
         var sendDocument = new SendDocument();
         sendDocument.setChatId(chatId);
-        var inputFile = new InputFile(docStream, "output.docx");
+        var inputFile = new InputFile(docStream, "Описание бизнес-идеи.docx");
         sendDocument.setDocument(inputFile);
 
-        sendDocument.setReplyMarkup(getChapterReplyMarkup());
+        sendDocument.setReplyMarkup(replyKeyboardMarkup);
 
         return sendDocument;
     }
 
     private void processTextMessage(Update update) {
         producerService.produceUpdate(update);
-    }
-
-    private ReplyKeyboardMarkup getChapterReplyMarkup(){
-        ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
-        List<KeyboardRow> keyboardRows = new ArrayList<>();
-        KeyboardRow row = new KeyboardRow();
-        row.add("1. Описание бизнес-идеи");
-        keyboardRows.add(row);
-
-        row = new KeyboardRow();
-        row.add("2. Описание продукта");
-        keyboardRows.add(row);
-
-        row = new KeyboardRow();
-        row.add("3. Маркетинговый план");
-        keyboardRows.add(row);
-
-        row = new KeyboardRow();
-        row.add("4. Производственный план");
-        keyboardRows.add(row);
-
-        row = new KeyboardRow();
-        row.add("5. Человеческие ресурсы");
-        keyboardRows.add(row);
-
-        row = new KeyboardRow();
-        row.add("6. Финансы и инвестиции");
-        keyboardRows.add(row);
-
-        row = new KeyboardRow();
-        row.add("7. Оценка рисков");
-        keyboardRows.add(row);
-
-        row = new KeyboardRow();
-        row.add("8. Перспективы");
-        keyboardRows.add(row);
-
-        keyboardMarkup.setKeyboard(keyboardRows);
-        return keyboardMarkup;
     }
 }
