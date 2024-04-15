@@ -17,6 +17,7 @@ import ru.urfu.utils.DocUtils;
 import ru.urfu.utils.RequestTextGenerators.AbstractRequestTextGenerator;
 import ru.urfu.utils.RequestTextGenerators.Factory.RequestTextFactory;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -116,13 +117,19 @@ public class DialogService {
             return;
         }
 
-
+        byte[] docBytes;
+        try {
+            docBytes = IOUtils.toByteArray(docStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        var docByteStream = new ByteArrayInputStream(docBytes);
 
         //Отправление файла
-        produceService.produceDocument(chatId, docStream, "some title");
+        produceService.produceDocument(chatId, docByteStream, "some title");
 
         //TODO Вызывает ошибку Attempted read on closed stream.
-        saveDocument("name", docStream);
+        saveDocument("name", docByteStream);
 
         //docUtils.saveDocument("TEST_NAME", docStream);
 
