@@ -36,4 +36,6 @@ public class AppUser {
     private int userStatePosition;
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Answer> answers;
+//    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    private List<AppDocument> appDocuments;
 }

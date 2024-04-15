@@ -128,7 +128,7 @@ public class DialogService {
         //Отправление файла
         produceService.produceDocument(chatId, docByteStream, "some title");
 
-        //TODO Вызывает ошибку Attempted read on closed stream.
+        docByteStream.reset();
         saveDocument("name", docByteStream);
 
         //docUtils.saveDocument("TEST_NAME", docStream);

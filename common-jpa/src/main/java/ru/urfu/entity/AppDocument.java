@@ -22,11 +22,14 @@ public class AppDocument {
     private String docName;
     @OneToOne(cascade = CascadeType.ALL)
     private BinaryContent binaryContent;
+    //private byte[] fileContent;
 
     private String mimeType;
 
     private Date createdAt;
 
+//    @ManyToOne
+//    private AppUser user;
     @PrePersist
     protected void onCreate() {
         createdAt = new Date();

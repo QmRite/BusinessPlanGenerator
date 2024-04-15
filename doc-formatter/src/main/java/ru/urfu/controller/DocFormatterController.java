@@ -70,15 +70,15 @@ public class DocFormatterController {
                 .body(fileSystemResource);
     }
 
-    private void saveDocument(String filename, byte[] planChapterBinary){
-        var binaryContent = new BinaryContent();
-        binaryContent.setFileAsArrayOfBytes(planChapterBinary);
-
-        var document = new AppDocument();
-        document.setBinaryContent(binaryContent);
-        document.setDocName(filename);
-        document.setMimeType(".docx");
-
-        appDocumentDAO.saveAndFlush(document);
-    }
+//    private void saveDocument(String filename, byte[] planChapterBinary){
+//        var binaryContent = new BinaryContent();
+//        binaryContent.setFileAsArrayOfBytes(planChapterBinary);
+//
+//        var document = new AppDocument();
+//        document.setBinaryContent(binaryContent);
+//        document.setDocName(filename);
+//        document.setMimeType(".docx");
+//
+//        appDocumentDAO.saveAndFlush(document);
+//    }
 }
