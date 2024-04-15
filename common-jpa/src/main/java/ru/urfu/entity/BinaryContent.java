@@ -7,15 +7,15 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Table(name = "binary_content")
-public class BinaryContent {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private byte[] fileAsArrayOfBytes;
-}
+//@Data
+//@Builder
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@Entity
+//@Table(name = "binary_content")
+//public class BinaryContent {
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
+//    private byte[] fileAsArrayOfBytes;
+//}

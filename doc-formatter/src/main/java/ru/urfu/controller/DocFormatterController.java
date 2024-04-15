@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.urfu.dao.AppDocumentDAO;
 import ru.urfu.entity.AppDocument;
-import ru.urfu.entity.BinaryContent;
 import ru.urfu.entity.enums.PlanChapter;
 import ru.urfu.service.impl.ApiService;
 import ru.urfu.service.impl.docServices.DescriptionDocService;

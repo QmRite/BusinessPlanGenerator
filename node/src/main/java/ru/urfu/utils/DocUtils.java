@@ -10,7 +10,6 @@ import org.apache.poi.util.IOUtils;
 import org.springframework.stereotype.Component;
 import ru.urfu.dao.AppDocumentDAO;
 import ru.urfu.entity.AppDocument;
-import ru.urfu.entity.BinaryContent;
 import ru.urfu.entity.enums.PlanChapter;
 import ru.urfu.service.api.DialogService;
 

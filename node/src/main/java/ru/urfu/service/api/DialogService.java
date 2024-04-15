@@ -10,7 +10,6 @@ import ru.urfu.dao.AppUserDAO;
 import ru.urfu.entity.Answer;
 import ru.urfu.entity.AppDocument;
 import ru.urfu.entity.AppUser;
-import ru.urfu.entity.BinaryContent;
 import ru.urfu.entity.enums.PlanChapter;
 import ru.urfu.service.convertors.PlanChapterConvertor;
 import ru.urfu.utils.DocUtils;
@@ -154,10 +153,11 @@ public class DialogService {
         document.setDocName(filename);
         document.setMimeType(".docx");
 
-        var binaryContent = new BinaryContent();
-        binaryContent.setFileAsArrayOfBytes(documentByteArray);
+        //var binaryContent = new BinaryContent();
+        //binaryContent.setFileAsArrayOfBytes(documentByteArray);
+        //document.setBinaryContent(binaryContent);
 
-        document.setBinaryContent(binaryContent);
+        document.setFileContent(documentByteArray);
 
         appDocumentDAO.save(document);
     }

@@ -20,9 +20,9 @@ public class AppDocument {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String docName;
-    @OneToOne(cascade = CascadeType.ALL)
-    private BinaryContent binaryContent;
-    //private byte[] fileContent;
+    //@OneToOne(cascade = CascadeType.ALL)
+    //private BinaryContent binaryContent;
+    private byte[] fileContent;
 
     private String mimeType;
 
