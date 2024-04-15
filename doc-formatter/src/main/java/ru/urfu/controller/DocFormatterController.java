@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.urfu.dao.AppDocumentDAO;
 import ru.urfu.entity.AppDocument;
+import ru.urfu.entity.BinaryContent;
 import ru.urfu.entity.enums.PlanChapter;
 import ru.urfu.service.impl.ApiService;
 import ru.urfu.service.impl.docServices.DescriptionDocService;
@@ -59,6 +60,7 @@ public class DocFormatterController {
         }
 
         var filename = PlanChapterNameConvertor.nameByPlanChapter.get(planChapter) + ".docx";
+        //saveDocument(filename, planChapterBinary);
 
         var fileSystemResource = docService.getFileSystemResource(planChapterBinary);
 
@@ -68,4 +70,15 @@ public class DocFormatterController {
                 .body(fileSystemResource);
     }
 
+    private void saveDocument(String filename, byte[] planChapterBinary){
+        var binaryContent = new BinaryContent();
+        binaryContent.setFileAsArrayOfBytes(planChapterBinary);
+
+        var document = new AppDocument();
+        document.setBinaryContent(binaryContent);
+        document.setDocName(filename);
+        document.setMimeType(".docx");
+
+        appDocumentDAO.saveAndFlush(document);
+    }
 }

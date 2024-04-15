@@ -79,7 +79,7 @@ public class ProduceService {
         }
     }
 
-    public void produceDocument(Long chatId, InputStream docStream, String filename, ArrayList<String> rowsString) {
+    public void produceDocument(Long chatId, InputStream docStream, String filename) {
         HttpClient httpClient = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost("http://localhost:8084/dispatcher/document/");
 
@@ -91,8 +91,10 @@ public class ProduceService {
         httpPost.addHeader("Chat-Id", chatId.toString());
         httpPost.setEntity(fileEntity);
 
+        HttpResponse response;
         try {
-            httpClient.execute(httpPost);
+            response = httpClient.execute(httpPost);
+            var a = 2;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

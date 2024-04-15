@@ -14,17 +14,16 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "documents")
+@Table(name = "app_document")
 public class AppDocument {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String docName;
-    //@OneToOne(cascade = CascadeType.ALL)
-    //private BinaryContent binaryContent;
+    @OneToOne(cascade = CascadeType.ALL)
+    private BinaryContent binaryContent;
 
     private String mimeType;
-    private byte[] fileContent;
 
     private Date createdAt;
 

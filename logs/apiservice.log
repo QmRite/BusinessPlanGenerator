@@ -1,0 +1,1 @@
+2024-04-15 23:00:48 ERROR ApiController:35 - Ошибка при выполнении запроса к YandexAPI: org.apache.http.conn.HttpHostConnectException: Connect to llm.api.cloud.yandex.net:443 [llm.api.cloud.yandex.net/158.160.54.160] failed: Connection timed out: connect
