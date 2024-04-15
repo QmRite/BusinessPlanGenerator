@@ -2,6 +2,8 @@ package ru.urfu.entity;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import ru.urfu.entity.enums.*;
 
 import javax.persistence.*;
@@ -34,8 +36,12 @@ public class AppUser {
     @Enumerated(EnumType.STRING)
     private UserState state;
     private int userStatePosition;
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Answer> answers;
-//    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    private List<AppDocument> appDocuments;
+
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<AppDocument> appDocuments;
 }

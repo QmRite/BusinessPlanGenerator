@@ -28,8 +28,8 @@ public class AppDocument {
 
     private Date createdAt;
 
-//    @ManyToOne
-//    private AppUser user;
+    @ManyToOne
+    private AppUser user;
     @PrePersist
     protected void onCreate() {
         createdAt = new Date();

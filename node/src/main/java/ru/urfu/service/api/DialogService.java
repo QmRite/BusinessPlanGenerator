@@ -128,7 +128,7 @@ public class DialogService {
         produceService.produceDocument(chatId, docByteStream, "some title");
 
         docByteStream.reset();
-        saveDocument("name", docByteStream);
+        saveDocument(appUser,"name", docByteStream);
 
         //docUtils.saveDocument("TEST_NAME", docStream);
 
@@ -140,7 +140,8 @@ public class DialogService {
     }
 
 
-    public void saveDocument(String filename, InputStream documentInputStream){
+    //TODO вынести в StorageUtils
+    public void saveDocument(AppUser appUser, String filename, InputStream documentInputStream){
 
         byte[] documentByteArray;
         try {
@@ -148,6 +149,8 @@ public class DialogService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+
 
         var document = new AppDocument();
         document.setDocName(filename);
@@ -158,6 +161,13 @@ public class DialogService {
         //document.setBinaryContent(binaryContent);
 
         document.setFileContent(documentByteArray);
+        document.setUser(appUser);
+
+/*        var appDocuments = appUser.getAppDocuments();
+        appDocuments.add(document);
+
+        appUser.setAppDocuments(appDocuments);
+        appUserDAO.save(appUser);*/
 
         appDocumentDAO.save(document);
     }
