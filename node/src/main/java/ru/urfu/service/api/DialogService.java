@@ -150,24 +150,11 @@ public class DialogService {
             throw new RuntimeException(e);
         }
 
-
-
         var document = new AppDocument();
         document.setDocName(filename);
         document.setMimeType(".docx");
-
-        //var binaryContent = new BinaryContent();
-        //binaryContent.setFileAsArrayOfBytes(documentByteArray);
-        //document.setBinaryContent(binaryContent);
-
         document.setFileContent(documentByteArray);
         document.setUser(appUser);
-
-/*        var appDocuments = appUser.getAppDocuments();
-        appDocuments.add(document);
-
-        appUser.setAppDocuments(appDocuments);
-        appUserDAO.save(appUser);*/
 
         appDocumentDAO.save(document);
     }

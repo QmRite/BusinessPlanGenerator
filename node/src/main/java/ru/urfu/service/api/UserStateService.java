@@ -21,11 +21,15 @@ public class UserStateService {
     private final ProduceService produceService;
     private final DialogService dialogService;
 
+    private final StorageService storageService;
 
-    public UserStateService(AppUserDAO appUserDAO, ProduceService produceService, DialogService dialogService) {
+
+    public UserStateService(AppUserDAO appUserDAO, ProduceService produceService,
+                            DialogService dialogService, StorageService storageService) {
         this.appUserDAO = appUserDAO;
         this.produceService = produceService;
         this.dialogService = dialogService;
+        this.storageService = storageService;
     }
 
     public void processTextMessage(Update update) {
@@ -40,12 +44,12 @@ public class UserStateService {
 
         //состояния
         if (CHAPTER_SELECTION_STATE.equals(appUser.getState())){
-            dialogService.startDialog(chatId, text, appUser);
+            //dialogService.startDialog(chatId, text, appUser);
 
-/*            var requestTextGenerator = RequestTextFactory.getRequestText(PlanChapter.DESCRIPTION.toString());
-            String[] answers = {"Продажа цветов", "Екатеринбург", "продажа", "21"};
+            var requestTextGenerator = RequestTextFactory.getRequestText(PlanChapter.DESCRIPTION.toString());
+            String[] answers = {"Продажа пиццы", "Екатеринбург", "продажа", "21"};
             dialogService.createPlanChapter(chatId, PlanChapter.DESCRIPTION,
-                    answers, requestTextGenerator, appUser);*/
+                    answers, requestTextGenerator, appUser);
             return;
         }
         else if (DIALOG_STATE.equals(appUser.getState())){
@@ -83,7 +87,9 @@ public class UserStateService {
 
         }
         else if (STORAGE_VIEWING_STATE.equals(inputUserState)){
-            output = "Топор хранилище ранилище";
+            //output = "Топор хранилище ранилище";
+
+            storageService.GetLastDocument(chatId, appUser);
         }
         else if (HELP_STATE.equals(inputUserState) || text.equals("/help")){
             output = "Помощь";

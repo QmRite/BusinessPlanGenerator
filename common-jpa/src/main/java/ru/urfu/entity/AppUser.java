@@ -44,4 +44,8 @@ public class AppUser {
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<AppDocument> appDocuments;
+
+    public List<AppDocument> getDocuments(){
+        return appDocuments;
+    }
 }
