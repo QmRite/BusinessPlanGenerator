@@ -3,7 +3,8 @@ package ru.urfu.entity.enums;
 public enum PlanChapter {
     RESUME("resume"),
     DESCRIPTION("description"),
-    PRODUCT_DESCRIPTION("product_description"),;
+    PRODUCT_DESCRIPTION("product_description"),
+    PROSPECTS("prospects"),;
 
     private final String value;
 

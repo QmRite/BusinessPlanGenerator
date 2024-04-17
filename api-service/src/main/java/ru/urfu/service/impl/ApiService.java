@@ -33,7 +33,8 @@ public class ApiService {
 
     private static Map<PlanChapter, String> RequestNameByPlanChapter = Map.ofEntries(
             entry(PlanChapter.DESCRIPTION, "request.json"),
-            entry(PlanChapter.PRODUCT_DESCRIPTION, "request2.json")
+            entry(PlanChapter.PRODUCT_DESCRIPTION, "request2.json"),
+            entry(PlanChapter.PROSPECTS, "request3.json")
     );
 
     public static HttpResponse sendRequestByPlanChapter(PlanChapter planChapter, String requestText) throws IOException {
