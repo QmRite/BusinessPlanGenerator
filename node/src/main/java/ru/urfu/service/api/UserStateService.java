@@ -46,9 +46,10 @@ public class UserStateService {
         if (CHAPTER_SELECTION_STATE.equals(appUser.getState())){
             //dialogService.startDialog(chatId, text, appUser);
 
-            var requestTextGenerator = RequestTextFactory.getRequestText(PlanChapter.DESCRIPTION.toString());
-            String[] answers = {"Продажа пиццы", "Екатеринбург", "продажа", "21"};
-            dialogService.createPlanChapter(chatId, PlanChapter.DESCRIPTION,
+            var planChapter = PlanChapter.DESCRIPTION;
+            var requestTextGenerator = RequestTextFactory.getRequestText(planChapter.toString());
+            String[] answers = {"Продажа пиццы", "Екатеринбург", "продажа", "124313 рублей", "Продвижение в социальнх сетях"};
+            dialogService.createPlanChapter(chatId, planChapter,
                     answers, requestTextGenerator, appUser);
             return;
         }

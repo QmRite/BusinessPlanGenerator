@@ -7,6 +7,7 @@
           <option value="chat_id" />
           <option value="Chat-Id" />
           <option value="Reply-Markup" />
+          <option value="File-Name" />
         </set>
       </option>
     </inspection_tool>

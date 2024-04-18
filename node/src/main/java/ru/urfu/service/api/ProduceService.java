@@ -79,16 +79,17 @@ public class ProduceService {
         }
     }
 
-    public void produceDocument(Long chatId, InputStream docStream, String filename) {
+    public void produceDocument(Long chatId, InputStream docStream, String fileName) {
         HttpClient httpClient = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost("http://localhost:8084/dispatcher/document/");
 
         InputStreamEntity fileEntity = new InputStreamEntity(docStream);
         fileEntity.setContentType("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
 
-        httpPost.addHeader("Content-disposition", "attachment; filename=" + filename);
+        httpPost.addHeader("Content-disposition", "attachment; filename=" + fileName);
         httpPost.addHeader("Content-Type", "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
         httpPost.addHeader("Chat-Id", chatId.toString());
+        httpPost.addHeader("File-Name", fileName);
         httpPost.setEntity(fileEntity);
 
         HttpResponse response;

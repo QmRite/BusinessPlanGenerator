@@ -12,6 +12,7 @@ import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
+import ru.urfu.utils.PlanChapterNameTranslator;
 
 
 import java.io.InputStream;
@@ -37,14 +38,17 @@ public class InternalController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/document/", consumes = {"*/*"})
     public void UserUpdate(@RequestHeader("Chat-Id") Long chatId,
+                           @RequestHeader("File-Name") String fileNameEn,
                            InputStream docStream) {
+
+        var fileName = PlanChapterNameTranslator.translator.get(fileNameEn) + ".docx";
 
         var rowsList = new ArrayList<KeyboardRow>();
         var row = new KeyboardRow();
         row.add("Главное меню");
         rowsList.add(row);
 
-        updateController.setView(chatId, docStream, new ReplyKeyboardMarkup(rowsList));
+        updateController.setView(chatId, docStream, new ReplyKeyboardMarkup(rowsList), fileName);
 
     }
 }

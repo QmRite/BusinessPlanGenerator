@@ -77,8 +77,9 @@ public class UpdateController {
         telegramBot.sendAnswerMessage(sendDocument);
     }
 
-    public void setView(Long chatId, InputStream docStream, ReplyKeyboardMarkup replyKeyboardMarkup) {
-        var sendDocument = createSendDocument(chatId, docStream, replyKeyboardMarkup);
+    public void setView(Long chatId, InputStream docStream,
+                        ReplyKeyboardMarkup replyKeyboardMarkup, String fileName) {
+        var sendDocument = createSendDocument(chatId, docStream, replyKeyboardMarkup, fileName);
         telegramBot.sendAnswerMessage(sendDocument);
     }
 
@@ -93,15 +94,16 @@ public class UpdateController {
             throw new RuntimeException(e);
         }
         var docStream = new ByteArrayInputStream(decodedString);
-        var sendDocument = createSendDocument(chatId, docStream, new ReplyKeyboardMarkup());
+        var sendDocument = createSendDocument(chatId, docStream, new ReplyKeyboardMarkup(), "test.docx");
         telegramBot.sendAnswerMessage(sendDocument);
     }
 
 
-    private SendDocument createSendDocument(Long chatId, InputStream docStream, ReplyKeyboardMarkup replyKeyboardMarkup) {
+    private SendDocument createSendDocument(Long chatId, InputStream docStream,
+                                            ReplyKeyboardMarkup replyKeyboardMarkup, String fileName) {
         var sendDocument = new SendDocument();
         sendDocument.setChatId(chatId);
-        var inputFile = new InputFile(docStream, "Описание бизнес-идеи.docx");
+        var inputFile = new InputFile(docStream, fileName);
         sendDocument.setDocument(inputFile);
 
         sendDocument.setReplyMarkup(replyKeyboardMarkup);

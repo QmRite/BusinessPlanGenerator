@@ -16,5 +16,6 @@ public abstract class AbstractRequestTextGenerator {
     }
 
     public abstract String getPlanChapter();
+
     public abstract String getRequestText(String[] answers);
 }

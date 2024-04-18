@@ -124,11 +124,12 @@ public class DialogService {
         }
         var docByteStream = new ByteArrayInputStream(docBytes);
 
+        var fileName = planChapter.toString();
         //Отправление файла
-        produceService.produceDocument(chatId, docByteStream, "some title");
+        produceService.produceDocument(chatId, docByteStream, fileName);
 
         docByteStream.reset();
-        saveDocument(appUser,"name", docByteStream);
+        saveDocument(appUser,fileName, docByteStream);
 
         //docUtils.saveDocument("TEST_NAME", docStream);
 

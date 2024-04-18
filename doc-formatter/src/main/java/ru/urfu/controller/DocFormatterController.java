@@ -13,7 +13,6 @@ import ru.urfu.entity.enums.PlanChapter;
 import ru.urfu.service.impl.ApiService;
 import ru.urfu.service.impl.docServices.DescriptionDocService;
 import ru.urfu.service.impl.docServices.factory.DocServiceFactory;
-import ru.urfu.utils.PlanChapterNameConvertor;
 
 import java.io.IOException;
 
@@ -58,7 +57,7 @@ public class DocFormatterController {
             throw new RuntimeException(e);
         }
 
-        var filename = PlanChapterNameConvertor.nameByPlanChapter.get(planChapter) + ".docx";
+        var filename = "tempName.docx";
         //saveDocument(filename, planChapterBinary);
 
         var fileSystemResource = docService.getFileSystemResource(planChapterBinary);
