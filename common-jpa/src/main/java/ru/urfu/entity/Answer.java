@@ -22,4 +22,5 @@ public class Answer {
     private String answer;
     @ManyToOne
     private AppUser user;
+
 }

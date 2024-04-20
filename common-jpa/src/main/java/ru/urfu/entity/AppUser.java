@@ -38,8 +38,21 @@ public class AppUser {
     private int userStatePosition;
 
     @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval=true)
     private List<Answer> answers;
+
+    public void addAnswer(Answer answer)
+    {
+        this.answers.add(answer);
+    }
+    public void removeAnswer(Answer answer) {
+        answer.setUser(null);
+        this.answers.remove(answer);
+    }
+
+    public void removeAnswers(){
+        answers.clear();
+    }
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

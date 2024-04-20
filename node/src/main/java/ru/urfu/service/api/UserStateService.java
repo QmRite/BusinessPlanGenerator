@@ -44,13 +44,13 @@ public class UserStateService {
 
         //состояния
         if (CHAPTER_SELECTION_STATE.equals(appUser.getState())){
-            //dialogService.startDialog(chatId, text, appUser);
+            dialogService.startDialog(chatId, text, appUser);
 
-            var planChapter = PlanChapter.DESCRIPTION;
+/*            var planChapter = PlanChapter.DESCRIPTION;
             var requestTextGenerator = RequestTextFactory.getRequestText(planChapter.toString());
             String[] answers = {"Продажа пиццы", "Екатеринбург", "продажа", "124313 рублей", "Продвижение в социальнх сетях"};
             dialogService.createPlanChapter(chatId, planChapter,
-                    answers, requestTextGenerator, appUser);
+                    answers, requestTextGenerator, appUser);*/
             return;
         }
         else if (DIALOG_STATE.equals(appUser.getState())){

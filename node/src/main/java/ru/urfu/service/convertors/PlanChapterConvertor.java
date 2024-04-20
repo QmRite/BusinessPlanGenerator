@@ -8,6 +8,7 @@ public class PlanChapterConvertor {
 
     public static Map<String, PlanChapter> PlanChapterByText = Map.of(
             "1. Описание бизнес-идеи", PlanChapter.DESCRIPTION,
-            "2. Описание продукта", PlanChapter.PRODUCT_DESCRIPTION
+            "2. Описание продукта", PlanChapter.PRODUCT_DESCRIPTION,
+            "8. Перспективы", PlanChapter.PROSPECTS
     );
 }

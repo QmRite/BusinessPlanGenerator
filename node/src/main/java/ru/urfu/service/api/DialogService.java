@@ -51,9 +51,9 @@ public class DialogService {
         PlanChapter planChapter = PlanChapterConvertor.PlanChapterByText.get(userAnswer);
         appUser.setPlanChapter(planChapter);
 
-        //TODO добавить вызов метода очистки ласт вопросов
-        var answers = new ArrayList<Answer>();
-        appUser.setAnswers(answers);
+/*        //TODO добавить вызов метода очистки ласт вопросов
+        //var answers = new ArrayList<Answer>();
+        appUser.removeAnswers();*/
 
         appUserDAO.saveAndFlush(appUser);
 
@@ -109,7 +109,7 @@ public class DialogService {
             log.error("Ошибка получения документа " + e);
 
             appUser.setState(MAIN_MENU_STATE);
-            appUser.getAnswers().clear();
+            appUser.removeAnswers();
             appUserDAO.saveAndFlush(appUser);
 
             produceService.produceMessage(chatId, "Ошибка. Попробуйте снова");
@@ -134,7 +134,7 @@ public class DialogService {
         //docUtils.saveDocument("TEST_NAME", docStream);
 
         appUser.setState(MAIN_MENU_STATE);
-        appUser.getAnswers().clear();
+        appUser.removeAnswers();
         appUserDAO.saveAndFlush(appUser);
 
         //return "Файл успешно создан";
