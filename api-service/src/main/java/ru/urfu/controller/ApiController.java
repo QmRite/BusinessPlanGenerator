@@ -45,7 +45,7 @@ public class ApiController {
             return ResponseEntity.internalServerError().build();
         }
 
-        var res = planChapterParser.getParsedContentJSON(responseText);
+        var res = planChapterParser.getParsedContentJSON(responseText, requestText);
 
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_JSON)

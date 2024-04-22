@@ -30,9 +30,8 @@ public class ProductDescriptionDocService extends AbstractDocService{
 
     @Override
     public byte[] createPlanChapterDoc(JSONObject content) throws InvalidFormatException, IOException {
-        var test = content.getJSONArray("Response").toList();
-
-        ArrayList<ArrayList<String>> rowsContent2 = test.stream()
+        var products = content.getString("Products");
+        var tableInfo = content.getJSONArray("Table").toList().stream()
                 .map(o -> new ObjectMapper().convertValue(o, new TypeReference<Map<String, String>>() {}))
                 .map(h -> new ArrayList<>(h.values()))
                 .collect(Collectors.toCollection(ArrayList::new));
@@ -40,11 +39,11 @@ public class ProductDescriptionDocService extends AbstractDocService{
         XWPFDocument doc = new XWPFDocument();
         XWPFParagraph tmpParagraph = doc.createParagraph();
         fillTitle(tmpParagraph, "2. Описание продукта:");
-        fillQuestionAndAnswer(tmpParagraph, "Какие товары (услуги) планируется реализовывать (их ключевые характеристики)", "оТВЕТ");
-        fillQuestion(tmpParagraph, "В чём их ценность для потребителя (уникальное торговое предложение");
+        fillQuestionAndAnswer(tmpParagraph, "Какие товары (услуги) планируется реализовывать (их ключевые характеристики)", products);
 
-        XWPFTable table = doc.createTable(rowsContent2.size(), 2);
-        fillTable(table, rowsContent2);
+        fillQuestion(tmpParagraph, "В чём их ценность для потребителя (уникальное торговое предложение");
+        XWPFTable table = doc.createTable(tableInfo.size(), 2);
+        fillTable(table, tableInfo);
         table.setWidth("100%");
 
         ByteArrayOutputStream binOut = new ByteArrayOutputStream();

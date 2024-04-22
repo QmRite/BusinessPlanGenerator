@@ -10,6 +10,10 @@ public abstract class AbstractPlanChapterParser {
     public abstract String getPlanChapter();
     public abstract String getParsedContentJSON(String rawContent);
 
+    public  String getParsedContentJSON(String rawContent, String requestText){
+        return getParsedContentJSON(rawContent);
+    };
+
     protected static String[] parseTable(String rawTable){
         var responseRows = rawTable.split("\n");
         var answersArray = new String[responseRows.length - 2];
@@ -33,5 +37,11 @@ public abstract class AbstractPlanChapterParser {
                 .getJSONObject(0)
                 .getJSONObject("message")
                 .getString("text");
+    }
+
+    public String getJsonFromResponseText(String responseText){
+        var jsonBeginIndex = responseText.indexOf("[");
+        var jsonEndIndex = responseText.indexOf("]") + 1;
+        return responseText.substring(jsonBeginIndex, jsonEndIndex);
     }
 }
