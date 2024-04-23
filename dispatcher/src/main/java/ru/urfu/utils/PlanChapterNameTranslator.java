@@ -7,6 +7,7 @@ public class PlanChapterNameTranslator {
     public static Map<String, String> translator = Map.of(
             "description", "Описание бизнес-идеи",
             "product_description", "Описание продукта",
-            "prospects", "Перспективы развития бизнеса"
+            "prospects", "Перспективы развития бизнеса",
+            "risks", "Оценка рисков"
             );
 }

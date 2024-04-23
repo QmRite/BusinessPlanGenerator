@@ -4,6 +4,7 @@ public enum PlanChapter {
     RESUME("resume"),
     DESCRIPTION("description"),
     PRODUCT_DESCRIPTION("product_description"),
+    RISKS("risks"),
     PROSPECTS("prospects"),;
 
     private final String value;

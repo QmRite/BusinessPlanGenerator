@@ -39,6 +39,7 @@ public abstract class AbstractDocService {
 
     protected void fillRow(XWPFTableRow row, ArrayList<String> values) {
         List<XWPFTableCell> cellsList = row.getTableCells();
+
         for (var i = 0; i < values.size(); i++){
             var currentCel = cellsList.get(i);
             currentCel.removeParagraph(0);

@@ -1,0 +1,18 @@
+{
+  "modelUri": "gpt://b1gud8a8igdi5urpv6hr/yandexgpt-pro",
+  "completionOptions": {
+    "stream": false,
+    "temperature": 0.7,
+    "maxTokens": "2000"
+  },
+  "messages": [
+    {
+      "role": "system",
+      "text": "[1]"
+    },
+    {
+      "role": "user",
+      "text": "Какие еще потенциальные риски и внешние условия стоит учитывать и как их можно минимизировать? "
+    }
+  ]
+}

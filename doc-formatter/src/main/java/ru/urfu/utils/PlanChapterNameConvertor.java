@@ -7,8 +7,9 @@ import java.util.Map;
 public class PlanChapterNameConvertor {
     public static Map<PlanChapter, String> nameByPlanChapter = Map.of(
             PlanChapter.DESCRIPTION,"Описание бизнес-идеи",
-            PlanChapter.PRODUCT_DESCRIPTION, "Описание продукта"
-
+            PlanChapter.PRODUCT_DESCRIPTION, "Описание продукта",
+            PlanChapter.PROSPECTS, "Перспективы",
+            PlanChapter.RISKS, "Оценка рисков"
     );
 }
 

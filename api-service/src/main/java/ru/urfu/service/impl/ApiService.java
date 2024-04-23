@@ -34,6 +34,7 @@ public class ApiService {
     private static Map<PlanChapter, String> RequestNameByPlanChapter = Map.ofEntries(
             entry(PlanChapter.DESCRIPTION, "request.json"),
             entry(PlanChapter.PRODUCT_DESCRIPTION, "request2.json"),
+            entry(PlanChapter.RISKS, "request4.json"),
             entry(PlanChapter.PROSPECTS, "request3.json")
     );
 
