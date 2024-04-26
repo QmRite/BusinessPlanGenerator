@@ -35,7 +35,8 @@ public class ApiService {
             entry(PlanChapter.DESCRIPTION, "request.json"),
             entry(PlanChapter.PRODUCT_DESCRIPTION, "request2.json"),
             entry(PlanChapter.RISKS, "request4.json"),
-            entry(PlanChapter.PROSPECTS, "request3.json")
+            entry(PlanChapter.PROSPECTS, "request3.json"),
+            entry(PlanChapter.WORKERS, "request5.json")
     );
 
     public static HttpResponse sendRequestByPlanChapter(PlanChapter planChapter, String requestText) throws IOException {

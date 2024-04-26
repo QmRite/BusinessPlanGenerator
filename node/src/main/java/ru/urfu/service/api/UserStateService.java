@@ -44,17 +44,20 @@ public class UserStateService {
 
         //состояния
         if (CHAPTER_SELECTION_STATE.equals(appUser.getState())){
-            //dialogService.startDialog(chatId, text, appUser);
+            dialogService.startDialog(chatId, text, appUser);
 
-            var planChapter = PlanChapter.RISKS;
+/*            var planChapter = PlanChapter.WORKERS;
             var requestTextGenerator = RequestTextFactory.getRequestText(planChapter.toString());
             String[] answers = {"Продажа пиццы",
                     "Фастфуд",
                     "Екатеринбург",
-                    "Пандемия, понижение спроса",
+                    "открытие",
+                    "доставка, флористика, уборка",
+                    "отдел продаж, отдел доставки",
+                    "100.000 рублей в месяц"
             };
             dialogService.createPlanChapter(chatId, planChapter,
-                    answers, requestTextGenerator, appUser);
+                    answers, requestTextGenerator, appUser);*/
             return;
         }
         else if (DIALOG_STATE.equals(appUser.getState())){

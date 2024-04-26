@@ -14,16 +14,15 @@ import ru.urfu.entity.enums.PlanChapter;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 @Service
 @Log4j
-public class RisksDocService extends AbstractDocService{
+public class WorkersDocService extends AbstractDocService{
     @Override
     public String getPlanChapter() {
-        return PlanChapter.RISKS.toString();
+        return PlanChapter.WORKERS.toString();
     }
 
     @Override
@@ -36,10 +35,10 @@ public class RisksDocService extends AbstractDocService{
 
         XWPFDocument doc = new XWPFDocument();
         XWPFParagraph tmpParagraph = doc.createParagraph();
-        fillTitle(tmpParagraph, "7. Оценка рисков:");
+        fillTitle(tmpParagraph, "5. Человеческие ресурсы:");
 
-        fillQuestion(tmpParagraph, "Какие риски и внешние условия стоит учитывать и как их минимизировать.");
-        XWPFTable table = doc.createTable(tableInfo.size(), 2);
+        fillQuestion(tmpParagraph, "специалисты каких профессий и в каком количестве понадобятся для достижения поставленной цели; каковы условия сотрудничества с ними.");
+        XWPFTable table = doc.createTable(tableInfo.size(), tableInfo.get(0).size());
         fillTable(table, tableInfo);
         table.setWidth("100%");
 

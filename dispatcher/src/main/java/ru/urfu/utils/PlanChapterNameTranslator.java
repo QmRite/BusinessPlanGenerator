@@ -8,6 +8,7 @@ public class PlanChapterNameTranslator {
             "description", "Описание бизнес-идеи",
             "product_description", "Описание продукта",
             "prospects", "Перспективы развития бизнеса",
-            "risks", "Оценка рисков"
+            "risks", "Оценка рисков",
+            "workers", "Человеческие ресурсы"
             );
 }
