@@ -28,24 +28,27 @@ public class ApiController {
                                                   @RequestBody String requestText) {
         //TODO для формирования badRequest добавить ControllerAdvice
 
-        HttpResponse response = null;
+/*        HttpResponse response = null;
         try {
             response = ApiService.sendRequestByPlanChapter(PlanChapter.valueOf(planChapter.toUpperCase()), requestText);
         } catch (IOException e) {
             log.error("Ошибка при выполнении запроса к YandexAPI: " + e);
             return ResponseEntity.internalServerError().build();
-        }
+        }*/
 
         var planChapterParser = PlanChapterFactory.getParser(planChapter);
-        String responseText = null;
+/*        String responseText = null;
         try {
             responseText = planChapterParser.getResponseText(response);
         } catch (IOException e) {
             log.error("Ошибка при получении текста запроса: " + e);
             return ResponseEntity.internalServerError().build();
-        }
+        }*/
 
-        var res = planChapterParser.getParsedContentJSON(responseText, requestText);
+        //var res = planChapterParser.getParsedContentJSON(responseText, requestText);
+
+        var res = planChapterParser.getParsedContentJSON(requestText);
+
 
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_JSON)
