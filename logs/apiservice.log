@@ -1,2 +1,4 @@
 2024-04-15 23:00:48 ERROR ApiController:35 - Ошибка при выполнении запроса к YandexAPI: org.apache.http.conn.HttpHostConnectException: Connect to llm.api.cloud.yandex.net:443 [llm.api.cloud.yandex.net/158.160.54.160] failed: Connection timed out: connect
 2024-04-21 16:07:15 ERROR ApiController:35 - Ошибка при выполнении запроса к YandexAPI: org.apache.http.conn.HttpHostConnectException: Connect to llm.api.cloud.yandex.net:443 [llm.api.cloud.yandex.net/158.160.54.160] failed: Connection timed out: connect
+2024-04-29 12:28:46 ERROR ApiService:55 - Невозможно прочитать файл запроса: java.nio.file.NoSuchFileException: C:\Users\user\IdeaProjects\BusinessPlanGenerator\api-service\src\main\resources\null
+2024-04-29 12:29:25 ERROR ApiService:55 - Невозможно прочитать файл запроса: java.nio.file.NoSuchFileException: C:\Users\user\IdeaProjects\BusinessPlanGenerator\api-service\src\main\resources\null
