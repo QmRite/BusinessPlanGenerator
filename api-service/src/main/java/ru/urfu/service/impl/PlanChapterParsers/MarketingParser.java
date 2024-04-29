@@ -48,6 +48,21 @@ public class MarketingParser extends AbstractPlanChapterParser {
         var competitorsTable = getCompetitors(requestText);
         result.put("CompetitorsTable", competitorsTable);
 
+        var realisation = getSubstring(requestText,
+                "Способ реализации товара:",
+                "Целевая аудитория:");
+        result.put("Realisation", realisation);
+
+        var target = getSubstring(requestText,
+                "Целевая аудитория:",
+                "Спрос на рынке на данный товар:");
+        result.put("Target", target);
+
+        var demand = getSubstring(requestText,
+                "Спрос на рынке на данный товар:",
+                "Конкуренты:");
+        result.put("Demand", demand);
+
         String res = null;
         try {
             res = new ObjectMapper().writeValueAsString(result);
@@ -92,19 +107,26 @@ public class MarketingParser extends AbstractPlanChapterParser {
     private List<TreeMap<String, String>> getCompetitors(String requestText) {
         var companies = getCompaniesStrings(requestText);
         var companyInfoByName = getCompanyInfoByName(companies);
-        var competitorsTable = getCompetitorsTable(companyInfoByName);
+        var competitorsTable = getCompetitorsTable(companyInfoByName, requestText);
         return competitorsTable;
     }
 
-    private static String[] getCompaniesStrings(String requestText) {
-        var companiesStringLeft = requestText.indexOf("Конкуренты: ") + 12;
-        var companiesStringRight = requestText.indexOf(" Максимальный бюджет:");
-        var companiesString = requestText.substring(companiesStringLeft, companiesStringRight);
+    private String[] getCompaniesStrings(String requestText) {
+        var companiesString = getSubstring(requestText,
+                "Конкуренты:",
+                "Максимальный бюджет:");
         var companies = companiesString.split(", ");
         return companies;
     }
 
-    private List<TreeMap<String, String>> getCompetitorsTable(HashMap<String, JSONObject> companyInfoByName) {
+    private String getSubstring(String sourceText, String startText, String endText){
+        var startTextIndex = sourceText.indexOf(startText + " ") + startText.length() + 1;
+        var endTextIndex = sourceText.indexOf(" " + endText);
+        return sourceText.substring(startTextIndex, endTextIndex);
+    }
+
+    private List<TreeMap<String, String>> getCompetitorsTable(HashMap<String, JSONObject> companyInfoByName,
+                                                              String requestText) {
         List<TreeMap<String, String>> rawTable = new ArrayList<TreeMap<String, String>>();
         var headerRow = new TreeMap<String, String>();
         headerRow.put("1elements", "Элементы сравнения");
@@ -116,7 +138,8 @@ public class MarketingParser extends AbstractPlanChapterParser {
 
         var okvedRow = new TreeMap<String, String>();
         okvedRow.put("1elements", "Вид деятельности");
-        okvedRow.put("2myCompany", "");
+        okvedRow.put("2myCompany", getSubstring(requestText, "Сфера бизнеса:",
+                "Место реализации:"));
         for (var companyName : companyInfoByName.keySet()){
             okvedRow.put(companyName, getOkved(companyInfoByName.get(companyName)));
         }
@@ -124,7 +147,8 @@ public class MarketingParser extends AbstractPlanChapterParser {
 
         var placeRow = new TreeMap<String, String>();
         placeRow.put("1elements", "Расположение");
-        placeRow.put("2myCompany", "");
+        placeRow.put("2myCompany", getSubstring(requestText, "Место реализации:",
+                "Способ реализации товара:"));
         for (var companyName : companyInfoByName.keySet()){
             placeRow.put(companyName, getPlace(companyInfoByName.get(companyName)));
         }

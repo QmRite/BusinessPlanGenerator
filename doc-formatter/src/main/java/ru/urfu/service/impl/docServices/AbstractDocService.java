@@ -1,5 +1,7 @@
 package ru.urfu.service.impl.docServices;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -11,6 +13,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 @Log4j
 public abstract class AbstractDocService {
@@ -49,12 +53,18 @@ public abstract class AbstractDocService {
     }
 
     protected void fillTitle(XWPFParagraph paragraph, String value) {
+        fillTitle(paragraph, value, true);
+    }
+
+    protected void fillTitle(XWPFParagraph paragraph, String value, boolean addBreak) {
         XWPFRun runQuestion = paragraph.createRun();
         setDefaultFilling(runQuestion);
         runQuestion.setBold(true);
         runQuestion.setText(value);
-        runQuestion.addBreak();
+        if (addBreak)
+            runQuestion.addBreak();
     }
+
 
     protected void fillQuestionAndAnswer(XWPFParagraph paragraph, String questionText, String answerText) {
         fillQuestion(paragraph, questionText);
@@ -62,11 +72,16 @@ public abstract class AbstractDocService {
     }
 
     protected void fillQuestion(XWPFParagraph paragraph, String value) {
+        fillQuestion(paragraph, value, true);
+    }
+
+    protected void fillQuestion(XWPFParagraph paragraph, String value, Boolean addBreak) {
         XWPFRun runQuestion = paragraph.createRun();
         setDefaultFilling(runQuestion);
         runQuestion.setItalic(true);
         runQuestion.setText(value);
-        runQuestion.addBreak();
+        if (addBreak)
+            runQuestion.addBreak();
     }
 
     protected void fillAnswer(XWPFParagraph paragraph, String value) {
@@ -84,5 +99,24 @@ public abstract class AbstractDocService {
     protected void setDefaultFilling(XWPFRun run){
         run.setFontSize(12);
         run.setFontFamily("Liberation Serif");
+    }
+
+
+    protected void createTableWithTitleByJson(XWPFDocument doc, JSONObject content, String tableName, String tableTitle) {
+        XWPFParagraph tableParagraph = doc.createParagraph();
+        tableParagraph.setAlignment(ParagraphAlignment.CENTER);
+        fillTitle(tableParagraph, tableTitle, false);
+        createTableByJson(doc, content, tableName);
+    }
+
+    protected void createTableByJson(XWPFDocument doc, JSONObject content, String tableName){
+        var marketingTableInfo = content.getJSONArray(tableName).toList().stream()
+                .map(o -> new ObjectMapper().convertValue(o, new TypeReference<TreeMap<String, String>>() {}))
+                .map(h -> new ArrayList<>(h.values()))
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        XWPFTable marketingTable = doc.createTable(marketingTableInfo.size(), marketingTableInfo.get(0).size());
+        fillTable(marketingTable, marketingTableInfo);
+        marketingTable.setWidth("100%");
     }
 }

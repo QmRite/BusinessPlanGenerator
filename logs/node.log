@@ -2756,3 +2756,4 @@
 2024-04-17 22:51:54 ERROR UserStateService:99 - Unknown user state: Главное меню
 2024-04-17 23:04:47 ERROR DialogService:109 - Ошибка получения документа org.apache.http.NoHttpResponseException: localhost:8087 failed to respond
 2024-04-18 22:31:03 ERROR UserStateService:100 - Unknown user state: Главное меню
+2024-04-29 20:58:39 ERROR UserStateService:108 - Unknown user state: Главное меню
