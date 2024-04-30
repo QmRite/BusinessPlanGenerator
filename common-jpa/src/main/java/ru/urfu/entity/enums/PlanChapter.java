@@ -5,6 +5,7 @@ public enum PlanChapter {
     DESCRIPTION("description"),
     PRODUCT_DESCRIPTION("product_description"),
     MARKETING("marketing"),
+    INDUSTRY("industry"),
     WORKERS("workers"),
     RISKS("risks"),
     PROSPECTS("prospects"),;

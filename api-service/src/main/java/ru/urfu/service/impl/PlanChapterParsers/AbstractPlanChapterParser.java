@@ -39,7 +39,7 @@ public abstract class AbstractPlanChapterParser {
                 .getString("text");
     }
 
-    public String getJsonFromResponseText(String responseText){
+    protected String getJsonFromResponseText(String responseText){
         var jsonBeginIndex = responseText.indexOf("[");
         var jsonEndIndex = responseText.indexOf("]") + 1;
         return responseText.substring(jsonBeginIndex, jsonEndIndex);
