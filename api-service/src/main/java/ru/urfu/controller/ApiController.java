@@ -61,6 +61,13 @@ public class ApiController {
             throw new RuntimeException(e);
         }
 
+        HttpResponse responseExpenses = null;
+        try {
+            responseExpenses = ApiService.sendRequestByPlanChapter(requestText, "request7.2.json");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         HttpResponse responseCalendar = null;
         try {
             responseCalendar = ApiService.sendRequestByPlanChapter(requestText, "request7.3.json");
@@ -71,9 +78,11 @@ public class ApiController {
         var industryChapterParser = new IndustryParser();
 
         String responseTechProcessText  = industryChapterParser.getResponseText(responseTechProcess);
+        String responseExpensesText = industryChapterParser.getResponseText(responseExpenses);
         String responseCalendarText  = industryChapterParser.getResponseText(responseCalendar);
 
-        var res = industryChapterParser.getParsedContentJSON(responseTechProcessText, "", responseCalendarText);
+
+        var res = industryChapterParser.getParsedContentJSON(responseTechProcessText, responseExpensesText, responseCalendarText);
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(res);
