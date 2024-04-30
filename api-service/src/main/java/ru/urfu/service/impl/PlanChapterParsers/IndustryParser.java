@@ -23,11 +23,22 @@ public class IndustryParser extends AbstractPlanChapterParser {
 
     @Override
     public String getParsedContentJSON(String rawContent, String requestText) {
-        var rawContentJson = getJsonFromResponseText(rawContent);
-        var risksTable = getCalendarTable(rawContentJson);
+        throw new NotImplementedException("not implemented");
+    }
 
+    public String getParsedContentJSON(String processText, String expensesText, String calendarText) {
         var rawByResponse = new HashMap<String, Object>();
-        rawByResponse.put("Table", risksTable);
+
+        var rawCalendarTableJson = getJsonFromResponseText(calendarText);
+        var calendarTable = getCalendarTable(rawCalendarTableJson);
+        rawByResponse.put("CalendarTable", calendarTable);
+
+        var rawProcessTableJson = getJsonFromResponseText(processText);
+        rawProcessTableJson = rawProcessTableJson.replaceAll("process step", "1process step");
+        rawProcessTableJson = rawProcessTableJson.replaceAll("resources", "2resources");
+        rawProcessTableJson = rawProcessTableJson.replaceAll("cost", "3cost");
+        var processTable = getProcessTable(rawProcessTableJson);
+        rawByResponse.put("ProcessTable", processTable);
 
         String res = null;
         try {
@@ -37,6 +48,28 @@ public class IndustryParser extends AbstractPlanChapterParser {
         }
 
         return res;
+    }
+
+    private List<TreeMap<String, String>> getProcessTable(String rawContentJson) {
+        ObjectMapper mapper = new ObjectMapper();
+
+        List<TreeMap<String, String>> rawTable = null;
+        try {
+            rawTable = mapper.readValue(
+                    rawContentJson, new TypeReference<>() {
+                    }
+            );
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+        var header = new TreeMap<String, String>();
+        header.put("1process step", "Шаг технологического процесса");
+        header.put("2resources", "Необходимые ресурсы");
+        header.put("3cost", "Затраты на ресурсы, руб");
+
+        rawTable.add(0, header);
+        return rawTable;
     }
 
     @Override

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.urfu.entity.enums.PlanChapter;
 import ru.urfu.service.impl.ApiService;
 import ru.urfu.service.impl.PlanChapterParsers.Factory.PlanChapterFactory;
+import ru.urfu.service.impl.PlanChapterParsers.IndustryParser;
 
 import java.io.IOException;
 
@@ -27,7 +28,9 @@ public class ApiController {
     public ResponseEntity<?> PlanContentByChapter(@PathVariable("plan_chapter") String planChapter,
                                                   @RequestBody String requestText) {
         //TODO для формирования badRequest добавить ControllerAdvice
-
+        if (PlanChapter.valueOf(planChapter.toUpperCase()) == PlanChapter.INDUSTRY){
+            return getIndustryEntity(requestText);
+        }
 
         HttpResponse response = null;
         try {
@@ -38,19 +41,39 @@ public class ApiController {
         }
 
         var planChapterParser = PlanChapterFactory.getParser(planChapter);
-        String responseText = null;
-        try {
-            responseText = planChapterParser.getResponseText(response);
-        } catch (IOException e) {
-            log.error("Ошибка при получении текста запроса: " + e);
-            return ResponseEntity.internalServerError().build();
-        }
+        String responseText  = planChapterParser.getResponseText(response);
 
         var res = planChapterParser.getParsedContentJSON(responseText, requestText);
 
         //var res = planChapterParser.getParsedContentJSON(requestText);
 
 
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(res);
+    }
+
+    private static ResponseEntity<String> getIndustryEntity(String requestText) {
+        HttpResponse responseTechProcess = null;
+        try {
+            responseTechProcess = ApiService.sendRequestByPlanChapter(requestText, "request7.1.json");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        HttpResponse responseCalendar = null;
+        try {
+            responseCalendar = ApiService.sendRequestByPlanChapter(requestText, "request7.3.json");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        var industryChapterParser = new IndustryParser();
+
+        String responseTechProcessText  = industryChapterParser.getResponseText(responseTechProcess);
+        String responseCalendarText  = industryChapterParser.getResponseText(responseCalendar);
+
+        var res = industryChapterParser.getParsedContentJSON(responseTechProcessText, "", responseCalendarText);
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(res);

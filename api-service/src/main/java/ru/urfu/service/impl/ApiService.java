@@ -38,10 +38,14 @@ public class ApiService {
             entry(PlanChapter.PROSPECTS, "request3.json"),
             entry(PlanChapter.WORKERS, "request5.json"),
             entry(PlanChapter.MARKETING, "request6.json"),
-            entry(PlanChapter.INDUSTRY, "request7.json")
+            entry(PlanChapter.INDUSTRY, "request7.3.json")
     );
 
     public static HttpResponse sendRequestByPlanChapter(PlanChapter planChapter, String requestText) throws IOException {
+        return sendRequestByPlanChapter(requestText, RequestNameByPlanChapter.get(planChapter));
+    }
+
+    public static HttpResponse sendRequestByPlanChapter(String requestText, String requestFileName) throws IOException {
         HttpClient httpClient = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost("https://llm.api.cloud.yandex.net/foundationModels/v1/completion");
 
@@ -51,7 +55,7 @@ public class ApiService {
             //TODO поменять на относительный путь
             jsonRequest = FileUtils.readFileToString(
                     new File("C:\\Users\\user\\IdeaProjects\\BusinessPlanGenerator\\api-service\\src\\main\\resources\\"
-                            + RequestNameByPlanChapter.get(planChapter)),
+                            + requestFileName),
                     StandardCharsets.UTF_8);
         } catch (IOException e) {
             log.error("Невозможно прочитать файл запроса: " + e);

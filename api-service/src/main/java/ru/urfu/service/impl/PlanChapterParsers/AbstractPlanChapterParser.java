@@ -27,8 +27,13 @@ public abstract class AbstractPlanChapterParser {
 
 
     //TODO вынести в отдельный класс
-    public String getResponseText(HttpResponse response) throws IOException {
-        String responseBody = EntityUtils.toString(response.getEntity(), "UTF-8");
+    public String getResponseText(HttpResponse response) {
+        String responseBody = null;
+        try {
+            responseBody = EntityUtils.toString(response.getEntity(), "UTF-8");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         JSONObject jsonObject = new JSONObject(responseBody);
 
