@@ -103,8 +103,8 @@ public class IndustryParser extends AbstractPlanChapterParser {
         var header = new TreeMap<String, String>();
         header.put(NUM, "№");
         header.put(EXPENSE, "Наименование затрат");
-        header.put(COUNT, "Стоимость за единицу, руб");
-        header.put(COST, "Количество единиц");
+        header.put(COUNT, "Количество единиц");
+        header.put(COST, "Стоимость за единицу, руб");
         header.put(TOTAL, "Общая стоимость");
 
         rawTable.add(0, header);

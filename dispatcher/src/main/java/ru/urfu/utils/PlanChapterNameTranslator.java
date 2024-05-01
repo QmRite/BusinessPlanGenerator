@@ -10,6 +10,7 @@ public class PlanChapterNameTranslator {
             "prospects", "Перспективы развития бизнеса",
             "risks", "Оценка рисков",
             "workers", "Человеческие ресурсы",
-            "marketing", "Маркетинговый план"
+            "marketing", "Маркетинговый план",
+            "industry", "Производственный план"
             );
 }

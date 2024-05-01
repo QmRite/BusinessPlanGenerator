@@ -46,16 +46,16 @@ public class UserStateService {
         if (CHAPTER_SELECTION_STATE.equals(appUser.getState())){
             dialogService.startDialog(chatId, text, appUser);
 
-/*            var planChapter = PlanChapter.MARKETING;
+/*            var planChapter = PlanChapter.INDUSTRY;
             var requestTextGenerator = RequestTextFactory.getRequestText(planChapter.toString());
             String[] answers = {"интернет-магазин цветов «Розы Урала»",
                     "интернет-продажа",
+                    "Цветы, горшки, удобрения",
                     "Россия, Екатеринбург",
-                    "продажа на вынос",
+                    "Открытие",
+                    "интернет-продажа",
                     "мужчины",
-                    "высокий",
-                    "сбербанк, лакру",
-                    "100.000 рублей в месяц"
+                    "1.000.000 рублей"
             };
             dialogService.createPlanChapter(chatId, planChapter,
                     answers, requestTextGenerator, appUser);*/
