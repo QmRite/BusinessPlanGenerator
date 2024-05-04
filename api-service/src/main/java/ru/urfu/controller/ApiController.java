@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.urfu.entity.enums.PlanChapter;
 import ru.urfu.service.impl.ApiService;
 import ru.urfu.service.impl.PlanChapterParsers.Factory.PlanChapterFactory;
+import ru.urfu.service.impl.PlanChapterParsers.FinanceParser;
 import ru.urfu.service.impl.PlanChapterParsers.IndustryParser;
 
 import java.io.IOException;
@@ -32,6 +33,10 @@ public class ApiController {
             return getIndustryEntity(requestText);
         }
 
+        if (PlanChapter.valueOf(planChapter.toUpperCase()) == PlanChapter.FINANCE){
+            return getFinanceEntity(requestText);
+        }
+
         HttpResponse response = null;
         try {
             response = ApiService.sendRequestByPlanChapter(PlanChapter.valueOf(planChapter.toUpperCase()), requestText);
@@ -48,6 +53,32 @@ public class ApiController {
         //var res = planChapterParser.getParsedContentJSON(requestText);
 
 
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(res);
+    }
+
+    private static ResponseEntity<String> getFinanceEntity(String requestText) {
+        HttpResponse responseCosts = null;
+        try {
+            responseCosts = ApiService.sendRequestByPlanChapter(requestText, "request8.1.json");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        HttpResponse responseInvestments = null;
+        try {
+            responseInvestments = ApiService.sendRequestByPlanChapter(requestText, "request8.2.json");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        var industryChapterParser = new FinanceParser();
+
+        String responseCostsText  = industryChapterParser.getResponseText(responseCosts);
+        String investmentsText = industryChapterParser.getResponseText(responseInvestments);
+
+        var res = industryChapterParser.getParsedContentJSON(responseCostsText, investmentsText, requestText);
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(res);

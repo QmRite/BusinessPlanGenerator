@@ -5,3 +5,4 @@
 2024-04-30 15:03:15 ERROR ApiService:61 - Невозможно прочитать файл запроса: java.nio.file.NoSuchFileException: C:\Users\user\IdeaProjects\BusinessPlanGenerator\api-service\src\main\resources\request7.1
 2024-04-30 15:03:29 ERROR ApiService:61 - Невозможно прочитать файл запроса: java.nio.file.NoSuchFileException: C:\Users\user\IdeaProjects\BusinessPlanGenerator\api-service\src\main\resources\request7.1
 2024-04-30 15:05:07 ERROR ApiService:61 - Невозможно прочитать файл запроса: java.nio.file.NoSuchFileException: C:\Users\user\IdeaProjects\BusinessPlanGenerator\api-service\src\main\resources\request7.1
+2024-05-04 11:03:10 ERROR ApiService:61 - Невозможно прочитать файл запроса: java.nio.file.NoSuchFileException: C:\Users\user\IdeaProjects\BusinessPlanGenerator\api-service\src\main\resources\null
