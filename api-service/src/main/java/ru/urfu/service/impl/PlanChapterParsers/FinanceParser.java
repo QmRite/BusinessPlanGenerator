@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.poi.ss.formula.eval.NotImplementedException;
 import org.springframework.stereotype.Component;
 import ru.urfu.entity.enums.PlanChapter;
-import ru.urfu.service.impl.PlanChapterParsers.AbstractPlanChapterParser;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -35,10 +34,13 @@ public class FinanceParser extends AbstractPlanChapterParser {
     public String getParsedContentJSON(String costContent, String investmentsContent, String requestText) {
         var rawCostContentJson = getJsonFromResponseText(costContent);
         rawCostContentJson = rawCostContentJson.replaceAll("name", NAME);
-        var risksTable = getCostsTable(rawCostContentJson);
+        var costsTable = getCostsTable(rawCostContentJson);
 
         var rawByResponse = new HashMap<String, Object>();
-        rawByResponse.put("CostsTable", risksTable);
+        rawByResponse.put("CostsTable", costsTable);
+
+        var incomeTable = getIncomeTable(requestText, costsTable);
+        rawByResponse.put("IncomeTable", incomeTable);
 
         var rawInvestmentsContentJson = getJsonFromResponseText(investmentsContent);
         rawInvestmentsContentJson = rawInvestmentsContentJson.replaceAll("name", NAME);
@@ -55,6 +57,81 @@ public class FinanceParser extends AbstractPlanChapterParser {
 
         return res;
     }
+
+    private List<TreeMap<String, String>> getIncomeTable(String requestText, List<TreeMap<String, String>> costsTable) {
+        var incomeTable = new ArrayList<TreeMap<String, String>>();
+        incomeTable.add(getIncomeHeader());
+
+        var revenue = getSubstring(requestText, "Выручка:", "Бюджет на старте:");
+        var revenueInt = Integer.parseInt(revenue);
+        var revenueRow = new TreeMap<String, String>();
+        revenueRow.put("0name", "Выручка");
+        for (var i = 1; i < 13; i++){
+            revenueRow.put(String.valueOf(i) , revenue);
+        }
+        incomeTable.add(revenueRow);
+
+        var tax = revenueInt * 0.06;
+        var taxRow = new TreeMap<String, String>();
+        taxRow.put("0name", "Налог на доход");
+        for (var i = 1; i < 13; i++){
+            taxRow.put(String.valueOf(i) , String.format("%.2f", tax));
+        }
+        incomeTable.add(taxRow);
+
+        var costsSum = costsTable.get(costsTable.size() - 1);
+        var costsSumInt = Integer.parseInt(costsSum.get("1"));
+        var costsRow = new TreeMap<String, String>();
+        costsRow.put("0name", "Издержки");
+        for (var i = 1; i < 13; i++){
+            costsRow.put(String.valueOf(i) , String.valueOf(costsSumInt));
+        }
+        incomeTable.add(costsRow);
+
+        var income = revenueInt - tax - costsSumInt;
+        var incomeRow = new TreeMap<String, String>();
+        incomeRow.put("0name", "Чистая прибыль за вычетом налогов");
+        for (var i = 1; i < 13; i++){
+            incomeRow.put(String.valueOf(i) , String.format("%.2f", income));
+        }
+        incomeTable.add(incomeRow);
+
+        var incomeGrowing = 0.0;
+        var incomeGrowingRow = new TreeMap<String, String>();
+        for (var key : incomeRow.keySet()){
+            if (key.equalsIgnoreCase("0name")){
+                incomeGrowingRow.put(key, "Чистая прибыль нарастающим итогом");;
+            }
+            incomeGrowing+=Double.parseDouble(incomeRow.get(key));
+            incomeGrowingRow.put(key, String.format("%.2f", incomeGrowing));
+        }
+        incomeTable.add(incomeGrowingRow);
+
+        return incomeTable;
+    }
+
+    private static TreeMap<String, String> getIncomeHeader() {
+        var costHeader = new TreeMap<String, String>();
+        costHeader.put("0name", "Месяцы");
+        return getMonthsTable(costHeader);
+    }
+
+    private static TreeMap<String, String> getMonthsTable(TreeMap<String, String> costHeader) {
+        costHeader.put("1", "1");
+        costHeader.put("10", "2");
+        costHeader.put("11", "3");
+        costHeader.put("12", "4");
+        costHeader.put("2", "5");
+        costHeader.put("3", "6");
+        costHeader.put("4", "7");
+        costHeader.put("5", "8");
+        costHeader.put("6", "9");
+        costHeader.put("7", "10");
+        costHeader.put("8", "11");
+        costHeader.put("9", "12");
+        return costHeader;
+    }
+
     private static List<TreeMap<String, String>> getInvestmentsTable(String rawContent) {
         ObjectMapper mapper = new ObjectMapper();
 
@@ -81,19 +158,16 @@ public class FinanceParser extends AbstractPlanChapterParser {
         var preliminaryInvestTable = rawTable.stream()
                 .filter(n -> n.get("type").equalsIgnoreCase("Предварительный"))
                 .collect(Collectors.toList());
-
         FillInvestsTablePart(investmentsTable, preliminaryInvestTable, totalRow, "1. Предварительные расходы", "Итого предварительных расходов");
 
         var basicInvestTable = rawTable.stream()
                 .filter(n -> n.get("type").equalsIgnoreCase("Основной"))
                 .collect(Collectors.toList());
-
         FillInvestsTablePart(investmentsTable, basicInvestTable, totalRow, "2. Основные средства", "Итого основных средств");
 
         var negotiableInvestTable = rawTable.stream()
                 .filter(n -> n.get("type").equalsIgnoreCase("Оборотный"))
                 .collect(Collectors.toList());
-
         FillInvestsTablePart(investmentsTable, negotiableInvestTable, totalRow, "3. Оборотные средства", "Итого оборотных средств");
 
         investmentsTable.add(totalRow);
@@ -217,19 +291,7 @@ public class FinanceParser extends AbstractPlanChapterParser {
     private static TreeMap<String, String> getCostHeader() {
         var costHeader = new TreeMap<String, String>();
         costHeader.put("0name", "Издержки/месяцы");
-        costHeader.put("1", "1");
-        costHeader.put("10", "2");
-        costHeader.put("11", "3");
-        costHeader.put("12", "4");
-        costHeader.put("2", "5");
-        costHeader.put("3", "6");
-        costHeader.put("4", "7");
-        costHeader.put("5", "8");
-        costHeader.put("6", "9");
-        costHeader.put("7", "10");
-        costHeader.put("8", "11");
-        costHeader.put("9", "12");
-        return costHeader;
+        return getMonthsTable(costHeader);
     }
 
     private static TreeMap<String, String> getCostSubHeader(String name) {

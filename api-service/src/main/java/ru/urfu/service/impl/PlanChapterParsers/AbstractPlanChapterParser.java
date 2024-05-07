@@ -49,4 +49,11 @@ public abstract class AbstractPlanChapterParser {
         var jsonEndIndex = responseText.indexOf("]") + 1;
         return responseText.substring(jsonBeginIndex, jsonEndIndex);
     }
+
+
+    protected String getSubstring(String sourceText, String startText, String endText){
+        var startTextIndex = sourceText.indexOf(startText + " ") + startText.length() + 1;
+        var endTextIndex = sourceText.indexOf(" " + endText);
+        return sourceText.substring(startTextIndex, endTextIndex);
+    }
 }

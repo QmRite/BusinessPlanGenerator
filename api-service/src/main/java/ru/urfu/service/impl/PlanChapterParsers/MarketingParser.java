@@ -119,11 +119,6 @@ public class MarketingParser extends AbstractPlanChapterParser {
         return companies;
     }
 
-    private String getSubstring(String sourceText, String startText, String endText){
-        var startTextIndex = sourceText.indexOf(startText + " ") + startText.length() + 1;
-        var endTextIndex = sourceText.indexOf(" " + endText);
-        return sourceText.substring(startTextIndex, endTextIndex);
-    }
 
     private List<TreeMap<String, String>> getCompetitorsTable(HashMap<String, JSONObject> companyInfoByName,
                                                               String requestText) {
