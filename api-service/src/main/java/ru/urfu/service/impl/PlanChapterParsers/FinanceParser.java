@@ -100,7 +100,8 @@ public class FinanceParser extends AbstractPlanChapterParser {
         var incomeGrowingRow = new TreeMap<String, String>();
         for (var key : incomeRow.keySet()){
             if (key.equalsIgnoreCase("0name")){
-                incomeGrowingRow.put(key, "Чистая прибыль нарастающим итогом");;
+                incomeGrowingRow.put(key, "Чистая прибыль нарастающим итогом");
+                continue;
             }
             incomeGrowing+=Double.parseDouble(incomeRow.get(key));
             incomeGrowingRow.put(key, String.format("%.2f", incomeGrowing));
