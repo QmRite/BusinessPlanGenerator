@@ -32,11 +32,14 @@ public class FinanceParser extends AbstractPlanChapterParser {
 
 
     public String getParsedContentJSON(String costContent, String investmentsContent, String requestText) {
+        var rawByResponse = new HashMap<String, Object>();
+
+        var startBudget = getSubstring(requestText, "Бюджет на старте:");
+        rawByResponse.put("StartBudget", startBudget);
+
         var rawCostContentJson = getJsonFromResponseText(costContent);
         rawCostContentJson = rawCostContentJson.replaceAll("name", NAME);
         var costsTable = getCostsTable(rawCostContentJson);
-
-        var rawByResponse = new HashMap<String, Object>();
         rawByResponse.put("CostsTable", costsTable);
 
         var incomeTable = getIncomeTable(requestText, costsTable);
@@ -45,7 +48,6 @@ public class FinanceParser extends AbstractPlanChapterParser {
         var rawInvestmentsContentJson = getJsonFromResponseText(investmentsContent);
         rawInvestmentsContentJson = rawInvestmentsContentJson.replaceAll("name", NAME);
         var investmentsTable = getInvestmentsTable(rawInvestmentsContentJson);
-
         rawByResponse.put("InvestmentsTable", investmentsTable);
 
         String res = null;

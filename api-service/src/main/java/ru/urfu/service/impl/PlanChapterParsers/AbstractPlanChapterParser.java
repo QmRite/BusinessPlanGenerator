@@ -56,4 +56,9 @@ public abstract class AbstractPlanChapterParser {
         var endTextIndex = sourceText.indexOf(" " + endText);
         return sourceText.substring(startTextIndex, endTextIndex);
     }
+
+    protected String getSubstring(String sourceText, String startText){
+        var startTextIndex = sourceText.indexOf(startText + " ") + startText.length() + 1;
+        return sourceText.substring(startTextIndex);
+    }
 }
