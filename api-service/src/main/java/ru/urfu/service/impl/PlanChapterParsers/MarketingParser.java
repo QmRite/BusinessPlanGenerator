@@ -188,38 +188,52 @@ public class MarketingParser extends AbstractPlanChapterParser {
                 .textNodes()
                 .toString();
 
-
         return innString.substring(1, innString.length() - 1);
     }
 
     private String getCapital(JSONObject companyInfo){
-        return companyInfo.getJSONObject("СвУстКап")
-                .getJSONObject("@attributes")
-                .getString("СумКап");
+        try{
+            return companyInfo.getJSONObject("СвУстКап")
+                    .getJSONObject("@attributes")
+                    .getString("СумКап");
+        }
+        catch (Exception e){
+            return "";
+        }
     }
 
     private String getOkved(JSONObject companyInfo){
-        return companyInfo.getJSONObject("СвОКВЭД")
-                .getJSONObject("СвОКВЭДОсн")
-                .getJSONObject("@attributes")
-                .getString("НаимОКВЭД");
+        try{
+            return companyInfo.getJSONObject("СвОКВЭД")
+                    .getJSONObject("СвОКВЭДОсн")
+                    .getJSONObject("@attributes")
+                    .getString("НаимОКВЭД");
+        }
+        catch (Exception e){
+            return "";
+        }
     }
 
     private String getPlace(JSONObject companyInfo){
-        var placeJson = companyInfo.getJSONObject("СвАдресЮЛ")
-                .getJSONObject("СвМНЮЛ");
+        try {
+            var placeJson = companyInfo.getJSONObject("СвАдресЮЛ")
+                    .getJSONObject("СвМНЮЛ");
 
-        if (placeJson.has("НаселенПункт")){
-            placeJson = placeJson.getJSONObject("НаселенПункт")
-                    .getJSONObject("@attributes");
+            if (placeJson.has("НаселенПункт")) {
+                placeJson = placeJson.getJSONObject("НаселенПункт")
+                        .getJSONObject("@attributes");
 
-            var type = placeJson.getString("Вид");
-            var name = placeJson.getString("Наим");
+                var type = placeJson.getString("Вид");
+                var name = placeJson.getString("Наим");
 
-            return type + " " + name;
+                return type + " " + name;
+            }
+            var res = placeJson.getString("НаимРегион");
+            return res;
         }
-        var res = placeJson.getString("НаимРегион");
-        return res;
+        catch (Exception e){
+            return "";
+        }
     }
 
     private JSONObject getCompanyInfoByInn(String inn){

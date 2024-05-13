@@ -12,6 +12,7 @@ public class PlanChapterConvertor {
             "3. Маркетинговый план", PlanChapter.MARKETING,
             "4. Производственный план", PlanChapter.INDUSTRY,
             "5. Человеческие ресурсы", PlanChapter.WORKERS,
+            "6. Финансы и инвестиции", PlanChapter.FINANCE,
             "7. Оценка рисков", PlanChapter.RISKS,
             "8. Перспективы", PlanChapter.PROSPECTS
     );

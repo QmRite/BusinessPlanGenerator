@@ -283,9 +283,10 @@ public class FinanceParser extends AbstractPlanChapterParser {
         costVarRow.put(NAME, rawRow.get(NAME));
 
         var costString = rawRow.get("cost");
-        totalSum += Integer.parseInt(costString);
+        int costInt = Integer.parseInt(costString) / 2;
+        totalSum += costInt;
         for (var i = 1; i < 13; i++){
-            costVarRow.put(String.valueOf(i) , costString);
+            costVarRow.put(String.valueOf(i) , String.valueOf(costInt));
         }
         costsTable.add(costVarRow);
         return totalSum;

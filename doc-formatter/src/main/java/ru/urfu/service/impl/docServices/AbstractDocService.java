@@ -65,7 +65,6 @@ public abstract class AbstractDocService {
             runQuestion.addBreak();
     }
 
-
     protected void fillQuestionAndAnswer(XWPFParagraph paragraph, String questionText, String answerText) {
         fillQuestion(paragraph, questionText);
         fillAnswer(paragraph, answerText);
@@ -101,7 +100,6 @@ public abstract class AbstractDocService {
         run.setFontFamily("Liberation Serif");
     }
 
-
     protected void createTableWithTitleByJson(XWPFDocument doc, JSONObject content, String tableName, String tableTitle) {
         XWPFParagraph tableParagraph = doc.createParagraph();
         tableParagraph.setAlignment(ParagraphAlignment.CENTER);
@@ -118,5 +116,24 @@ public abstract class AbstractDocService {
         XWPFTable marketingTable = doc.createTable(marketingTableInfo.size(), marketingTableInfo.get(0).size());
         fillTable(marketingTable, marketingTableInfo);
         marketingTable.setWidth("100%");
+    }
+
+    protected void createTableWithTitleByJson(XWPFDocument doc, JSONObject content, String tableName, String tableTitle,
+                                              String width) {
+        XWPFParagraph tableParagraph = doc.createParagraph();
+        tableParagraph.setAlignment(ParagraphAlignment.CENTER);
+        fillTitle(tableParagraph, tableTitle, false);
+        createTableByJson(doc, content, tableName, width);
+    }
+
+    protected void createTableByJson(XWPFDocument doc, JSONObject content, String tableName, String width){
+        var marketingTableInfo = content.getJSONArray(tableName).toList().stream()
+                .map(o -> new ObjectMapper().convertValue(o, new TypeReference<TreeMap<String, String>>() {}))
+                .map(h -> new ArrayList<>(h.values()))
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        XWPFTable marketingTable = doc.createTable(marketingTableInfo.size(), marketingTableInfo.get(0).size());
+        fillTable(marketingTable, marketingTableInfo);
+        marketingTable.setWidth(width);
     }
 }

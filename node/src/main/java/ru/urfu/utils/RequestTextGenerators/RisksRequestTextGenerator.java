@@ -11,7 +11,7 @@ public class RisksRequestTextGenerator extends AbstractRequestTextGenerator {
         super(List.of("Суть проекта (чем будете заниматься)",
                 "Сфера деятельности бизнеса",
                 "Место реализации",
-                "Какие риски и внешние условия стоит учитывать?"));
+                "Какие риски и внешние условия стоит учитывать"));
     }
 
     @Override

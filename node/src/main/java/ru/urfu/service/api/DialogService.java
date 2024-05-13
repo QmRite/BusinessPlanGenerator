@@ -36,7 +36,6 @@ public class DialogService {
     private final DocUtils docUtils;
     private final AppDocumentDAO appDocumentDAO;
 
-
     public DialogService(AppUserDAO appUserDAO, ProduceService produceService, AnswerDAO answerDAO, DocUtils docUtils, AppDocumentDAO appDocumentDAO) {
         this.appUserDAO = appUserDAO;
         this.produceService = produceService;

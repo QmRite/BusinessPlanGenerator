@@ -7,7 +7,7 @@ public enum UserState {
 
     STORAGE_FILE_SELECTION_STATE("Выбор ранее созданного файла"),
 
-    STORAGE_VIEWING_STATE("Ранее созданные файлы"),
+    STORAGE_VIEWING_STATE("Раннее созданные файлы"),
 
     CHAPTER_SELECTION_STATE("Создать главу бизнес-плана"),
 

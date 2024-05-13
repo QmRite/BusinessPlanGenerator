@@ -11,6 +11,7 @@ public class PlanChapterNameTranslator {
             "risks", "Оценка рисков",
             "workers", "Человеческие ресурсы",
             "marketing", "Маркетинговый план",
-            "industry", "Производственный план"
+            "industry", "Производственный план",
+            "finance", "Финансы и инвестиции"
             );
 }
