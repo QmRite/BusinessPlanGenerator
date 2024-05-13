@@ -10,7 +10,7 @@ public class DescriptionRequestTextGenerator extends AbstractRequestTextGenerato
     DescriptionRequestTextGenerator() {
         super(List.of("Суть проекта (чем будете заниматься)",
                 "Место реализации",
-                "Вид экономической деятельности (укажите ОКВЭД)",
+                "Сфера деятельности бизнеса",
                 "Количество создаваемых рабочих мест в первый год деятельности"));
     }
 
