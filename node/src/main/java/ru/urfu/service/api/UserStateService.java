@@ -35,7 +35,7 @@ public class UserStateService {
     public void processTextMessage(Update update) {
 
         var appUser = findOrSaveAppUser(update);
-        var userState = appUser.getState();
+        var currentUserState = appUser.getState();
         var text = update.getMessage().getText();
         var chatId = update.getMessage().getChatId();
 
@@ -105,7 +105,7 @@ public class UserStateService {
         }
 
         else{
-            log.error("Unknown user state: " + userState);
+            log.error("Unknown user state: " + currentUserState);
             output = "Неизвестная ошибка! Введите /cancel и попробуйте снова.";
         }
 

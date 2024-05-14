@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpResponse;
+import org.apache.http.NoHttpResponseException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -182,11 +183,17 @@ public class MarketingParser extends AbstractPlanChapterParser {
             throw new RuntimeException(e);
         }
 
-        var innString = doc.select("td")
-                .first()
-                .child(0)
-                .textNodes()
-                .toString();
+        var innString = "";
+        try {
+            innString = doc.select("td")
+                    .first()
+                    .child(0)
+                    .textNodes()
+                    .toString();
+        }
+        catch (Exception e){
+            return innString;
+        }
 
         return innString.substring(1, innString.length() - 1);
     }
@@ -242,7 +249,11 @@ public class MarketingParser extends AbstractPlanChapterParser {
         HttpResponse response = null;
         try {
             response = httpClient.execute(httpPost);
-        } catch (IOException e) {
+        }
+        catch (NoHttpResponseException e) {
+            return new JSONObject();
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
         String responseBody = null;

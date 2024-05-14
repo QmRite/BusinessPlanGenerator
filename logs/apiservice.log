@@ -6,3 +6,4 @@
 2024-04-30 15:03:29 ERROR ApiService:61 - Невозможно прочитать файл запроса: java.nio.file.NoSuchFileException: C:\Users\user\IdeaProjects\BusinessPlanGenerator\api-service\src\main\resources\request7.1
 2024-04-30 15:05:07 ERROR ApiService:61 - Невозможно прочитать файл запроса: java.nio.file.NoSuchFileException: C:\Users\user\IdeaProjects\BusinessPlanGenerator\api-service\src\main\resources\request7.1
 2024-05-04 11:03:10 ERROR ApiService:61 - Невозможно прочитать файл запроса: java.nio.file.NoSuchFileException: C:\Users\user\IdeaProjects\BusinessPlanGenerator\api-service\src\main\resources\null
+2024-05-14 13:54:48 ERROR ApiController:44 - Ошибка при выполнении запроса к YandexAPI: java.net.SocketException: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond

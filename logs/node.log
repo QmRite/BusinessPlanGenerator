@@ -2757,3 +2757,17 @@
 2024-04-17 23:04:47 ERROR DialogService:109 - Ошибка получения документа org.apache.http.NoHttpResponseException: localhost:8087 failed to respond
 2024-04-18 22:31:03 ERROR UserStateService:100 - Unknown user state: Главное меню
 2024-04-29 20:58:39 ERROR UserStateService:108 - Unknown user state: Главное меню
+2024-05-14 21:54:03 ERROR DialogService:108 - Ошибка получения документа org.apache.http.conn.HttpHostConnectException: Connect to localhost:8087 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+2024-05-14 21:55:49 ERROR UserStateService:108 - Unknown user state: Главное меню
+2024-05-14 21:55:52 ERROR UserStateService:108 - Unknown user state: Главное меню
+2024-05-14 21:55:55 ERROR UserStateService:108 - Unknown user state: Главное меню
+2024-05-14 22:11:06 ERROR UserStateService:108 - Unknown user state: Главное меню
+2024-05-14 22:36:32 ERROR DialogService:110 - Ошибка получения документа javax.ws.rs.BadRequestException: HTTP 400 Bad Request
+2024-05-14 22:38:35 ERROR UserStateService:108 - Unknown user state: Главное меню
+2024-05-14 22:38:40 ERROR UserStateService:108 - Unknown user state: Главное меню
+2024-05-14 22:45:43 ERROR UserStateService:108 - Unknown user state: Главное меню
+2024-05-14 22:48:48 ERROR DialogService:139 - Ошибка получения документа javax.ws.rs.BadRequestException: HTTP 400 Bad Request
+2024-05-14 23:08:51 ERROR DialogService:139 - Ошибка получения документа javax.ws.rs.BadRequestException: HTTP 400 Bad Request
+2024-05-14 23:11:03 ERROR DialogService:139 - Ошибка получения документа javax.ws.rs.BadRequestException: HTTP 400 Bad Request
+2024-05-14 23:15:09 ERROR DialogService:139 - Ошибка получения документа javax.ws.rs.BadRequestException: HTTP 400 Bad Request
+2024-05-14 23:39:40 ERROR DialogService:139 - Ошибка получения документа javax.ws.rs.BadRequestException: HTTP 400 Bad Request

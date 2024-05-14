@@ -16,6 +16,7 @@ import ru.urfu.utils.DocUtils;
 import ru.urfu.utils.RequestTextGenerators.AbstractRequestTextGenerator;
 import ru.urfu.utils.RequestTextGenerators.Factory.RequestTextFactory;
 
+import javax.ws.rs.BadRequestException;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,6 +36,7 @@ public class DialogService {
 
     private final DocUtils docUtils;
     private final AppDocumentDAO appDocumentDAO;
+
 
     public DialogService(AppUserDAO appUserDAO, ProduceService produceService, AnswerDAO answerDAO, DocUtils docUtils, AppDocumentDAO appDocumentDAO) {
         this.appUserDAO = appUserDAO;
@@ -104,14 +106,8 @@ public class DialogService {
         InputStream docStream;
         try {
             docStream =  docUtils.getPlanChapterInputStream(planChapter, requestText);
-        } catch (IOException e) {
-            log.error("Ошибка получения документа " + e);
-
-            appUser.setState(MAIN_MENU_STATE);
-            appUser.removeAnswers();
-            appUserDAO.saveAndFlush(appUser);
-
-            produceService.produceMessage(chatId, "Ошибка. Попробуйте снова");
+        } catch (IOException | BadRequestException e) {
+            catchErrorAndBackToMainMenu(chatId, appUser, e, "Ошибка. Попробуйте снова");
             return;
         }
 
@@ -137,6 +133,19 @@ public class DialogService {
         appUserDAO.saveAndFlush(appUser);
 
         //return "Файл успешно создан";
+    }
+
+    private void catchErrorAndBackToMainMenu(Long chatId, AppUser appUser, Exception e, String message) {
+        log.error("Ошибка получения документа " + e);
+
+        appUser.setState(MAIN_MENU_STATE);
+        appUser.removeAnswers();
+        appUserDAO.saveAndFlush(appUser);
+
+        ArrayList<String> rowsString = new ArrayList<>();
+        rowsString.add("Главное меню");
+
+        produceService.produceMessage(chatId, message, rowsString);
     }
 
 

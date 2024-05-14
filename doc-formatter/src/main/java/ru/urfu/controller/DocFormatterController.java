@@ -2,6 +2,7 @@ package ru.urfu.controller;
 
 import lombok.extern.log4j.Log4j;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -55,6 +56,10 @@ public class DocFormatterController {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+        catch (JSONException e) {
+            log.error("Ошибка при парсе JSON к Api-Service: " + e);
+            return ResponseEntity.badRequest().build();
         }
 
         var filename = "tempName.docx";
